@@ -1,4 +1,4 @@
-name: Upload Website
+name: Upload Static-Website-S3-Route53
 
 on:
   push:
