@@ -24,7 +24,30 @@ key to `**AWS_SECRET_ACCESS_KEY**` variable.
 Under `SOURCE_DIR` Specify the 'repository' where website files are stored.
 
 The CI/CD `Workflow file` written in `YAML template` for github actions to automate the deployment process is as follows:
-```yaml```
+```yaml
+# GitHub Actions CI/CD workflow file for S3 deployment
+name: Upload Website
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: 'us-east-1'   # optional: defaults to us-east-1
+        SOURCE_DIR: 'Static-Website-S3-Route53/Website'      # optional: defaults to entire repository```
+
 Add a S3 bucket policy:
   * Add a S3 bucket policy to allow github to access S3 bucket. Go to `awspolicygen.amazonaws.com` to create a bucket policy. 'Principle' of the policy will be the ARN of the `IAM User` that was created for github. Allow `All Actions`. `ARN` will be the ARN of the S3 bucket.  Once the policy is generated paste it under S3's `bucket policy` under 'Permissions'.
 * Now that we have configured all the permission for the github to access S3 bucket, go to the repository and push some changes to the code. Once we `commit changes` this will automatically trigger the 'Workflow file'. Once all the steps run successfully , the changes/ website files will be deployed to the S3 bucket. We can check this by refreshing the `objects` section of S3. To view the website, click on the `bucket website endpoint` in properties section.
