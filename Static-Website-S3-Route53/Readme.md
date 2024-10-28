@@ -23,6 +23,8 @@ key to `**AWS_SECRET_ACCESS_KEY**` variable.
 * In the YAML code template, specify `AWS_REGION` as `us-east-1` which is the region where the S3 bucket is located.
 Under `SOURCE_DIR` Specify the 'repository' where website files are stored.
 
+The CI/CD `Workflow file` written in `YAML template` for github actions to automate the deployment process is as follows:
+```yaml```
 Add a S3 bucket policy:
   * Add a S3 bucket policy to allow github to access S3 bucket. Go to `awspolicygen.amazonaws.com` to create a bucket policy. 'Principle' of the policy will be the ARN of the `IAM User` that was created for github. Allow `All Actions`. `ARN` will be the ARN of the S3 bucket.  Once the policy is generated paste it under S3's `bucket policy` under 'Permissions'.
 * Now that we have configured all the permission for the github to access S3 bucket, go to the repository and push some changes to the code. Once we `commit changes` this will automatically trigger the 'Workflow file'. Once all the steps run successfully , the changes/ website files will be deployed to the S3 bucket. We can check this by refreshing the `objects` section of S3. To view the website, click on the `bucket website endpoint` in properties section.
