@@ -1,5 +1,5 @@
 # Static Website Hosting on AWS S3 with CI/CD using GitHub Actions
-## Description
+## Introduction
 #### This project demonstrates how to host a static website on AWS S3, using a custom domain registered in AWS Route 53. The website files are managed in a GitHub repository, and GitHub Actions are configured to provide CI/CD, syncing changes to S3 automatically when updates are made to the code.
 ## Project Architecture
 ![Diagram explaining the architecture of this project](image.png)
@@ -77,4 +77,5 @@ The bucket policy, written in JSON, provides access to the objects stored in the
 Add an `A record` to direct traffic from your domain to the IP adress.  The A record(ALIAS) allows Route 53 to map the domain to the S3 bucket URL (e.g., example-bucket.s3-website-region.amazonaws.com). This ensures that requests to custom domain are directed to the website hosted in S3.
 * Set the 'Routing policy' as `simple routing`, which is used to direct traffic to a single resource i.e S3 bucket. With Simple Routing, we can create a DNS record that routes traffic to just one IP address or endpoint. `Save` record.
 
+## 🎉 Conclusion
 Now, all the configurations has been completed. Once we enter the custom domain to the browser the website will be displayed. The GitHub Actions workflow file automates deployment by syncing the S3 bucket with any new changes pushed to the main branch.
