@@ -51,6 +51,24 @@ jobs:
 
 Add a S3 bucket policy:
   * Add a S3 bucket policy to allow github to access S3 bucket. Go to `awspolicygen.amazonaws.com` to create a bucket policy. 'Principle' of the policy will be the ARN of the `IAM User` that was created for github. Allow `All Actions`. `ARN` will be the ARN of the S3 bucket.  Once the policy is generated paste it under S3's `bucket policy` under 'Permissions'.
+
+The bucket policy, written in JSON, provides access to the objects stored in the bucket. 
+```{
+    "Version": "2012-10-17",
+    "Id": "Policy1729991484655",
+    "Statement": [
+        {
+            "Sid": "Stmt1729991468347",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::963611518741:user/githubaction-S3sync"
+            },
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::cloud.pranavswaroop.click"
+        }
+    ]
+}
+```
 * Now that we have configured all the permission for the github to access S3 bucket, go to the repository and push some changes to the code. Once we `commit changes` this will automatically trigger the 'Workflow file'. Once all the steps run successfully , the changes/ website files will be deployed to the S3 bucket. We can check this by refreshing the `objects` section of S3. To view the website, click on the `bucket website endpoint` in properties section.
 ## Stage 3 - Add a custom domain using Route 53
 *I have registered a custom domain in Route 53. Route 53 will allocate a `Hosted zone` for the domain. 
