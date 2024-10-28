@@ -53,7 +53,8 @@ Add a S3 bucket policy:
   * Add a S3 bucket policy to allow github to access S3 bucket. Go to `awspolicygen.amazonaws.com` to create a bucket policy. 'Principle' of the policy will be the ARN of the `IAM User` that was created for github. Allow `All Actions`. `ARN` will be the ARN of the S3 bucket.  Once the policy is generated paste it under S3's `bucket policy` under 'Permissions'.
 
 The bucket policy, written in JSON, provides access to the objects stored in the bucket. 
-```{
+```JSON
+{
     "Version": "2012-10-17",
     "Id": "Policy1729991484655",
     "Statement": [
