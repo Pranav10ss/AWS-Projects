@@ -2,7 +2,7 @@
 ## Introduction
 #### This project demonstrates how to host a static website on AWS S3, using a custom domain registered in AWS Route 53. The website files are managed in a GitHub repository, and GitHub Actions are configured to provide CI/CD, syncing changes to S3 automatically when updates are made to the code.
 ## Project Architecture
-![Diagram explaining the architecture of this project](image.png)
+![Diagram explaining the architecture of this project](Image/image.png)
 ## Stage 1 - Create the S3 Bucket
 #### Create a S3 bucket to store the static website files. The name of the S3 bucket should be same as the custom domain name.
 * disable `block all public access` inorder to allow public internet to access the bucket.
