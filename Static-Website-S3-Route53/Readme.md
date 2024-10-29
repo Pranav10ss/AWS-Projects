@@ -11,15 +11,15 @@
 ## Stage 2 - Setting up a Github repository
 * create github repository to store the website files. Upload the files in a specific folder called `Website`
 * create a github workflow directory and add a `workflow file` to run a job which deploys the website files to S3 bucket. It also triggers the workflow file whenever there's change in code. This how CI/CD in github action works.
-The workflow file is a Yaml file which uses `'S3-sync-action'`. This action is readily available on github marketplace.
-The code requires parameters like `**AWS_S3_BUCKET**` which will be the name of the S3 bucket where the website files are going to get deployed. `**AWS_ACCESS_KEY_ID**` & `**AWS_SECRET_ACCESS_KEY**` parameters are basically provided by IAM inorder for the github to access S3 bucket.
+The workflow file is a Yaml file which uses `S3-sync-action`. This action is readily available on github marketplace.
+The code requires parameters like `AWS_S3_BUCKET` which will be the name of the S3 bucket where the website files are going to get deployed. `AWS_ACCESS_KEY_ID` & `AWS_SECRET_ACCESS_KEY` parameters are basically provided by IAM inorder for the github to access S3 bucket.
 
 IAM:
-   * Create an `**'IAM user'**` for github action and attach a `**'AmazonS3FullAccess'**` permissions policy. Github will use this `IAM user` to authenticate to AWS account.
+   * Create an `IAM user` for github action and attach a `AmazonS3FullAccess` permissions policy. Github will use this `IAM user` to authenticate to AWS account.
    * Under 'Security credentials' create an Access key and Secret access key.
-* Once we have all three parameters, add these to `Repository secrets` of 'Actions' under 'Secrets and variables'.
-Pass the bucket name to `**AWS_S3_BUCKET**` variable, access key ID to `**AWS_ACCESS_KEY_ID**` variable and Secret access 
-key to `**AWS_SECRET_ACCESS_KEY**` variable.
+* Once we have all three parameters, go to settings of the github repository and add these variables to `Repository secrets` of 'Actions' under 'Secrets and variables'.
+Pass the bucket name to `AWS_S3_BUCKET` variable, access key ID to `AWS_ACCESS_KEY_ID` variable and Secret access 
+key to `AWS_SECRET_ACCESS_KEY` variable.
 * In the YAML code template, specify `AWS_REGION` as `us-east-1` which is the region where the S3 bucket is located.
 Under `SOURCE_DIR` Specify the 'repository' where website files are stored.
 
@@ -50,7 +50,7 @@ jobs:
 ```
 
 Add a S3 bucket policy:
-  * Add a S3 bucket policy to allow github to access S3 bucket. Go to `awspolicygen.amazonaws.com` to create a bucket policy. 'Principle' of the policy will be the ARN of the `IAM User` that was created for github. Allow `All Actions`. `ARN` will be the ARN of the S3 bucket.  Once the policy is generated paste it under S3's `bucket policy` under 'Permissions'.
+  * Add a S3 bucket policy to allow github to access S3 bucket. Go to `awspolicygen.amazonaws.com` to create a bucket policy. 'Principle' of the policy will be the ARN of the `IAM User` that was created for github. Allow `All Actions`. 'ARN' will be the ARN of the S3 bucket.  Once the policy is generated paste it under S3's 'bucket policy' under 'Permissions'.
 
 The bucket policy, written in JSON, provides access to the objects stored in the bucket. 
 ```JSON
@@ -70,7 +70,7 @@ The bucket policy, written in JSON, provides access to the objects stored in the
     ]
 }
 ```
-* Now that we have configured all the permission for the github to access S3 bucket, go to the repository and push some changes to the code. Once we `commit changes` this will automatically trigger the 'Workflow file'. Once all the steps run successfully , the changes/ website files will be deployed to the S3 bucket. We can check this by refreshing the `objects` section of S3. To view the website, click on the `bucket website endpoint` in properties section.
+* Now that we have configured all the permission for the github to access S3 bucket, go to the repository and push some changes to the code. Once we `commit changes` this will automatically trigger the 'Workflow file'. Once all the steps run successfully , the changes/website files will be deployed to the S3 bucket. We can check this by refreshing the `objects` section of S3. To view the website, click on the `bucket website endpoint` in properties section.
 ## Stage 3 - Add a custom domain using Route 53
 *I have registered a custom domain in Route 53. Route 53 will allocate a `Hosted zone` for the domain. 
 * Create a record for the custom domain. The name of the record should be same as the name of the bucket.
