@@ -72,7 +72,7 @@ The bucket policy, written in JSON, provides access to the objects stored in the
 ```
 * Now that we have configured all the permission for the github to access S3 bucket, go to the repository and push some changes to the code. Once we `commit changes` this will automatically trigger the 'Workflow file'. Once all the steps run successfully , the changes/website files will be deployed to the S3 bucket. We can check this by refreshing the `objects` section of S3. To view the website, click on the `bucket website endpoint` in properties section.
 ## Stage 3 - Add a custom domain using Route 53
-*I have registered a custom domain in Route 53. Route 53 will allocate a `Hosted zone` for the domain. 
+* I have registered a custom domain in Route 53. Route 53 will allocate a `Hosted zone` for the domain. 
 * Create a record for the custom domain. The name of the record should be same as the name of the bucket.
 Add an `A record` to direct traffic from your domain to the IP adress.  The A record(ALIAS) allows Route 53 to map the domain to the S3 bucket URL (e.g., example-bucket.s3-website-region.amazonaws.com). This ensures that requests to custom domain are directed to the website hosted in S3.
 * Set the 'Routing policy' as `simple routing`, which is used to direct traffic to a single resource i.e S3 bucket. With Simple Routing, we can create a DNS record that routes traffic to just one IP address or endpoint. `Save` record.
