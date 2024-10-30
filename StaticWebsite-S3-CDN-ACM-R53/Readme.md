@@ -4,7 +4,7 @@ In this project we are going to host a static website using amazon S3. S3 serves
 Amazon CloudFront is used for CDN (Content Delivery Network) to enhance website performance by reducing latency and ensure secure HTTPS delivery.AWS Certificate Manager (ACM) issues an SSL certificate for HTTPS access. Route 53 manages the custom domain.
 ## Architecture
 ![Diagram explaining the architecture of this project](Images/Architecture-diagram.png)
-* When an user tries to access a domain(ex:www.pranavswaroop.com), the domain hosted on route53 which has an `Alias record` configured for your domain that points to the cloudFront distribution. 
+* When an user tries to access a domain(ex:www.pranavswaroop.com), the domain hosted on route53 which has an `Alias record` configured points the request to cloudFront. 
 * CloudFront first checks if the requested content is available in its `cache` at an `edge location` near the user. If the content is cached, CF serves the files immediately, reducing latency and improving load times.
 * Cloudfront uses SSL certificate issued by `AWS certificate manager(ACM)` to establish a secure HTTP connection ensuring that the data b/w the user and CF is encrypted.
 * If the requested file isn't in the CF cache, CF forwards the request to `origin(S3 bucket)` where the website's static files are stored. S3 serves the file back to CloudFront. This initial fetch happens only if CloudFront’s cache doesn’t already contain the requested content.
@@ -14,7 +14,7 @@ Amazon CloudFront is used for CDN (Content Delivery Network) to enhance website 
 * Go to `AWS Console`->`Route 53`->`Register domain`. Type the domain that you want, it has to be unique. Check the availability and buy the domain. AWS will automatically create hosted zones for you for the domain that you bought. It will create two records for the doamin, NS(Name server) record and SOA(Start of Authority) record.
 ## Stage 2 - Create a S3 bucket 
 * Go to S3 console and create a bucket. The bucket name should match the domain name registered in Route 53.
-* Disable `block all public access` to allow public internet to access the files in the bucket. You can also 'Tag your resources'. This tags be used to filter in your `Cost and Usage report` for `Access control` and other settings. Then Click on `Create bucket`.
+* Disable `block all public access` to allow public internet to access the files in the bucket. You can also 'Tag your resources'. This tags will be used to filter in your `Cost and Usage report` for `Access control` and other settings. Then Click on `Create bucket`.
 * Upload the HTML and CSS files to the bucket.
 * Go to `Properties`->`Static Website hosting`->Then 'Enable' static website hosting. Specify the name of the index file and the error document.  click on `Save Changes`.
 * Go to `Permissions`->`Bucket policy` and edit the bucket policy for the public internet to access the S3 bucket. ARN to be mentioned in the bucket policy will be the ARN of the S3 bucket. The sample of bucket policy is as follows:
@@ -38,7 +38,7 @@ Amazon CloudFront is used for CDN (Content Delivery Network) to enhance website 
 
 ## Stage 4 - Create a cloudFront distribution
 * Go to CloudFront->`Distributions->`Click on `Create Distribution`. If you click `Origin domain` it will give you an option to select S3 bucket, but we do't want the CF to access S3 bucket directly we want it access the S3 endpoint. So under `Properties`->`Static Website hosting` of S3 bucket, You'll get to see `bucket website endpoint`. If the enddpoint is 
-http://pranavswaroop.click.s3-website-us-east-1.amazonaws.com copy everything after `//` and paste it under `Origin domain` of the CF distribution. 
+`http://pranavswaroop.click.s3-website-us-east-1.amazonaws.com` copy everything after `//` and paste it under `Origin domain` of the CF distribution. 
 * Under, `Default cache behavior`->`Viewer protocol policy` select `Redirect HTTP to HTTPS`.
 * Under, `Settings`-> Add `Alternate domain name(CNAME)`. The CNAME will be your domain registered with Route 53. Choose the 
 `SSL certificate` that you created for the domain.
@@ -50,5 +50,5 @@ http://pranavswaroop.click.s3-website-us-east-1.amazonaws.com copy everything af
 Now if you go to your browser and enter your domain name, you can verify your website which is accessible over HTTPS. 
 
 ## Conclusion
-In this way, you can use CloudFront deliver your web content through its edge locations. CF uses S3 bucket as origin to server the static contents. SSL certificate added to the domain name helps in redirecting the HTTP request to HTTPS. 
+In this way, you can use CloudFront to deliver your web content through its edge locations. CF uses S3 bucket as origin to server the static contents. SSL certificate added to the domain name helps in redirecting the HTTP request to HTTPS. 
  
