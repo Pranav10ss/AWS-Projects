@@ -93,7 +93,7 @@ Create a Lambda function:
   click on `Create function`.
 * Go to `Permissions` in the Lambda tab. And attach the IAM role that you created. 
 * Write a Lambda function using AWS SDK for python. The function is as follows:
-```JSON
+```python
 import json
 import boto3
 dynamodb = boto3.resource('dynamodb')
