@@ -1,7 +1,7 @@
-## Serverless Web Application using Lambda, Dynamo DB, S3 and CloudFront
-### Project Overview
+# Serverless Web Application using Lambda, Dynamo DB, S3 and CloudFront
+## 📘 Project Overview
 In this project we will build a serverless web application which will allow users to create, update, read and delete (CURD) items from a DynamoDB table. We will be utilizing a Lambda function URL for backend interaction without the need for an API Gateway. The app leverages various AWS services to ensure high availability, scalability, and secure content delivery, with a real-time view counter that tracks website visits.
-### Architecture
+## Architecture
 ![Diagram explaining the architecture of this project](Images/Architecture-diagram.png)
 The architecture consists of the following components:
 1. Amazon S3: Stores static website files like HTML, CSS, and JavaScript.
@@ -20,7 +20,7 @@ The architecture consists of the following components:
      arrives. Additionally, DynamoDB can store other user-generated data if needed, making it ideal for any CRUD operations
      required for your application.
 
-### End-to-End Flow with Lambda function URL as API Gateway
+## End-to-End Flow with Lambda function URL as API Gateway
 Here's how the view count will update each time someone visits the site:
 1. When a user visits your website, the JavaScript function `updateViewCount()` will execute and make a `GET` request to the API Gateway endpoint.
 2. API Gateway to Lambda: API Gateway receives the request and triggers the Lambda function.
@@ -30,7 +30,7 @@ Here's how the view count will update each time someone visits the site:
    * It then updates the record in dynamoDB with the new count.
 4. DynamoDB Updates: The updated view count is stored back in dynamoDB, making the new count available for next request.
 
-### Step 1 - Setup S3 bucket
+## Step 1 - Setup S3 bucket
 * Create a S3 bucket
 * Upload your `index.html`, `styles.css` and `Javascript files`. Add `Lambda function URL` to the Javascript file after
   creating a lambda function which acts as a bridge between your website and the backend services (Lambda and dynamoDB) for
@@ -38,13 +38,13 @@ Here's how the view count will update each time someone visits the site:
 * Setup a bucket policy to allow CloudFront to access the files. Cloudfront will create a bucket policy while creating a
   `origin access control`.
   
-### Step 2 - Create a SSL cerificate for HTTPS access
+## Step 2 - Create a SSL cerificate for HTTPS access
 * Go to Amazon certificate manager(ACM)->`Request a public certificate`->under Enter a fully qualified domain enter your 
   custom domain. You need to prove the ownership of the domain, so select `DNS validation`.
 * The certificate must be in `US East(N. Virginia) Region (us-east-1)`.
 * Go to Route 53, Once validated you can see a `CNAME record` that will be pointing to the certificate.
   
-### Step 3 - Configure a CloudFront Distribution
+## Step 3 - Configure a CloudFront Distribution
 * Create a cloudfront distribution with S3 bucket as origin.
 * Create a `Origin access control` and add `origin type` as S3.
 * Under `Default cache behavior` select `Viewer protocol policy` as `Redirect HTTP to HTTPS`.
@@ -74,7 +74,7 @@ Here's how the view count will update each time someone visits the site:
     ]
 }
 ```
-### Step 4 - Implementing View Counter Using Lambda and DynamoDB
+## Step 4 - Implementing View Counter Using Lambda and DynamoDB
 Create a dynamoDB table:
 * Create a DynamoDB table. Enter `Partition key` as `id`. Leave rest of the things as default and create table.
 * Click on the DynamoDB table->`Explore table items`->`create item`. Input the value of partition key(id) as `0`.
@@ -119,7 +119,7 @@ def lambda_handler(event, context):
 * Add the `Lamda function URL` to Javascript which lets website's backend to fetch the lambda function and update the view
   counter. This JavaScript code calls the `Lambda function URL` to fetch and update the view count whenever the page loads.
 
-### Step 5 - Test and Deploy
+## Step 5 - Test and Deploy
 * Update the S3 bucket with the newly updated website files.
 * Make sure to invalidate the cloudfront cache. You can manually invalidate the CloudFront files, forcing the CF to fetch
   the latest version from your S3 bucket. Go to CF Distribution -> Invalidations -> Create invalidation -> In the `Add objec
@@ -127,7 +127,7 @@ def lambda_handler(event, context):
 * Optionally you can set a Lower Cache TTL. Set the `Minimum TTL`, `Maximum TTL`, and `Default TTL` to lower values (e.g.,
   0 for immediate refresh, though it may impact performance).
 
-### Conclusion
+## ✅ Conclusion
 This project showcases a fully serverless web application architecture , including a real-time view counter that integrates Lambda and DynamoDB without API Gateway. It’s a secure, scalable, and cost-effective solution for hosting static and dynamic content.
 
 
