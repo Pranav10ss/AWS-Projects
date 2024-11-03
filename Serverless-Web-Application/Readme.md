@@ -73,11 +73,59 @@ Here's how the view count will update each time someone visits the site:
     ]
 }
 ```
-### Step 4 - 
+### Step 4 - Implementing View Counter Using Lambda and DynamoDB
+Create a dynamoDB table:
+* Create a DynamoDB table. Enter `Partition key` as `id`. Leave rest of the things as default and create table.
+* Click on the DynamoDB table->`Explore table items`->`create item`. Input the value of partition key(id) as `0`.
+  Click on `Add new attribute` and select the type as `Number`. Give the Attribute name as `views` and enter the value as
+  `1` and click on `create item`.
 
-   
+Create an IAM Role for Lambda to access dynamoDB table.
+* Go to `IAM Console`-> `Roles`->`Create Role`->Select trusted identity type as `AWS Service`. Select the `Service or use 
+  case` as `Lambda` and select `DynamoDBFullAccess` as the permissions policy. Give the Role a name. And Click on `Create
+  Role`. 
 
+Create a Lambda function:
+* Go to `Lambda`-> `Create function`-> Select the `runtime`. Under the `advanced settings` click on `enable function URL`.
+  Select the AUTH type as `NONE` which means the Lambda function URL will be publicly accessible.
+  Enable `Configure cross-origin resource sharing(CORS)` so that only selected origins can access the lambda function. Then
+  click on `Create function`.
+* Go to `Permissions` in the Lambda tab. And attach the IAM role that you created. 
+* Write a Lambda function using AWS SDK for python. The function is as follows:
+```JSON
+import json
+import boto3
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('serverlesswebapp-pranav')
+def lambda_handler(event, context):
+    response = table.get_item(Key={
+        'id':'0'
+    })
+    views = response['Item']['views']
+    views = views + 1
+    
+    print(views)
+    
+    response = table.put_item(Item={
+        'id':'0',
+        'views': views
+    })
+    
+    return views
+``` 
+  In order to integrate the lambda function code changes to the website, we need to make certain changes to the `index.html` and javascript file so that view count will get updated. 
+* Add the `Lamda function URL` to Javascript which lets website's backend to fetch the lambda function and update the view
+  counter. This JavaScript code calls the `Lambda function URL` to fetch and update the view count whenever the page loads.
 
+### Step 5 - Test and Deploy
+* Update the S3 bucket with the newly updated website files.
+* Make sure to invalidate the cloudfront cache. You can manually invalidate the CloudFront files, forcing the CF to fetch
+  the latest version from your S3 bucket. Go to CF Distribution -> Invalidations -> Create invalidation -> In the `Add objec
+  path` enter `/*`(This will invalidate all files, so cloudfront fetches the latest versions from S3).
+* Optionally you can set a Lower Cache TTL. Set the `Minimum TTL`, `Maximum TTL`, and `Default TTL` to lower values (e.g.,
+  0 for immediate refresh, though it may impact performance).
 
+### Conclusion
+This project showcases a fully serverless web application architecture , including a real-time view counter that integrates Lambda and DynamoDB without API Gateway. It’s a secure, scalable, and cost-effective solution for hosting static and dynamic content.
 
 
