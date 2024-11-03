@@ -91,7 +91,7 @@ Create a Lambda function:
   Select the AUTH type as `NONE` which means the Lambda function URL will be publicly accessible.
   Enable `Configure cross-origin resource sharing(CORS)` so that only selected origins can access the lambda function. Then
   click on `Create function`.
-* Go to `Permissions` in the Lambda tab. And attach the IAM role that you created. 
+* Go to `Permissions` in the Lambda tab. And attach the `IAM role` that you created. 
 * Write a Lambda function using AWS SDK for python. The function is as follows:
 ```python
 import json
