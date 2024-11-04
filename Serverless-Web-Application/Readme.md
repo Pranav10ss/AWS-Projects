@@ -40,7 +40,7 @@ Here's how the view count will update each time someone visits the site:
   `origin access control`.
   
 ## Step 2 - Create a SSL cerificate for HTTPS access
-* Go to Amazon certificate manager(ACM)->`Request a public certificate`->under Enter a fully qualified domain enter your 
+* Go to Amazon certificate manager(ACM)->`Request a public certificate`->under `Enter a fully qualified domain` enter your 
   custom domain. You need to prove the ownership of the domain, so select `DNS validation`.
 * The certificate must be in `US East(N. Virginia) Region (us-east-1)`.
 * Go to Route 53, Once validated you can see a `CNAME record` that will be pointing to the certificate.
