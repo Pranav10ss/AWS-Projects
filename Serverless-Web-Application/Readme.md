@@ -51,7 +51,7 @@ Here's how the view count will update each time someone visits the site:
 * Under `Default cache behavior` select `Viewer protocol policy` as `Redirect HTTP to HTTPS`.
 * Under `Settings`, Add your custom domain name `Alternate domain name` and add the 'SSL certificate' created in ACM.
 * After completing the creation of S3 bucket, CF will provide you with a S3 bucket policy to copy for `origin access control`.
-  Go to S3 bucket->`Permissions`->`Bucket policy` and edit the bucket policy allow access to the S3 files from CF
+  Go to S3 bucket->`Permissions`->`Bucket policy` and edit the bucket policy to allow access to the S3 files from CF
   distribution. The sample of bucket policy is as follows:
 ```JSON
 {
