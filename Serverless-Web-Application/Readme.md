@@ -24,12 +24,12 @@ The architecture consists of the following components:
 ## End-to-End Flow with Lambda function URL as API Gateway
 Here's how the view count will update each time someone visits the site:
 1. When a user visits your website, the JavaScript function `updateViewCount()` will execute and make a `GET` request to the API Gateway endpoint.
-2. API Gateway to Lambda: API Gateway receives the request and triggers the Lambda function.
-3. Lambda Function Logic:
+2. **API Gateway to Lambda**: API Gateway receives the request and triggers the Lambda function.
+3. **Lambda Function Logic**:
    * The Lambda function retrieves the current view count from DynamoDB.
    * It increments the count by 1.
    * It then updates the record in dynamoDB with the new count.
-4. DynamoDB Updates: The updated view count is stored back in dynamoDB, making the new count available for next request.
+4. **DynamoDB Updates**: The updated view count is stored back in dynamoDB, making the new count available for next request.
 
 ## Step 1 - Setup S3 bucket
 * Create a S3 bucket
