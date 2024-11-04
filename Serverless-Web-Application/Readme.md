@@ -123,7 +123,7 @@ def lambda_handler(event, context):
 ## Step 5 - Test and Deploy
 * Update the S3 bucket with the newly updated website files.
 * Make sure to invalidate the cloudfront cache. You can manually invalidate the CloudFront files, forcing the CF to fetch
-  the latest version from your S3 bucket. Go to CF Distribution -> Invalidations -> Create invalidation -> In the `Add objec
+  the latest version from your S3 bucket. Go to CF Distribution -> Invalidations -> Create invalidation -> In the `Add object
   path` enter `/*`(This will invalidate all files, so cloudfront fetches the latest versions from S3).
 * Optionally you can set a Lower Cache TTL. Set the `Minimum TTL`, `Maximum TTL`, and `Default TTL` to lower values (e.g.,
   0 for immediate refresh, though it may impact performance).
