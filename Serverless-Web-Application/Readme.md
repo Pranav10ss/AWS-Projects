@@ -6,15 +6,15 @@ In this project we will build a serverless web application which will allow user
 
 The architecture consists of the following components:
 1. **Amazon S3**: Stores static website files like HTML, CSS, and JavaScript.
-2. Amazon CloudFront: Distributes website content globally, reducing latency.
-3. Amazon Route 53: Manages the custom domain, routing traffic to the CloudFront distribution.
-4. AWS Certificate Manager (ACM): Provides SSL/TLS certificates to secure the site over HTTPS.
-5. AWS Lambda (with Function URL): A backend Lambda function URL that increments and retrieves the view count. Lambda executes serverless functions to handle backend logic for your website, such as managing CRUD operations and tracking viewer count.
+2. **Amazon CloudFront**: Distributes website content globally, reducing latency.
+3. **Amazon Route 53**: Manages the custom domain, routing traffic to the CloudFront distribution.
+4. **AWS Certificate Manager (ACM)**: Provides SSL/TLS certificates to secure the site over HTTPS.
+5. **AWS Lambda (with Function URL)**: A backend Lambda function URL that increments and retrieves the view count. Lambda executes serverless functions to handle backend logic for your website, such as managing CRUD operations and tracking viewer count.
    * For CRUD operations, Lambda functions can perform tasks like adding, reading, updating, or deleting data in DynamoDB
       when triggered.
    * You could set up a Lambda function that increments a viewer count in DynamoDB each time someone visits the site,
      creating a dynamic, real-time feature.
-6. Amazon DynamoDB: Stores and manages data for the dynamic aspects of your website (e.g., viewer count, user data).,which
+6. **Amazon DynamoDB**: Stores and manages data for the dynamic aspects of your website (e.g., viewer count, user data).,which
    will be accessible and updatable by Lambda.
    * Your Lambda functions can interact with DynamoDB to store and retrieve data as needed.
    * For the viewer count feature, DynamoDB can hold a record of the count, which Lambda updates each time a new visitor
