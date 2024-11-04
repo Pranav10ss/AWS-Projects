@@ -3,6 +3,7 @@
 In this project we will build a serverless web application which will allow users to create, update, read and delete (CURD) items from a DynamoDB table. We will be utilizing a Lambda function URL for backend interaction without the need for an API Gateway. The app leverages various AWS services to ensure high availability, scalability, and secure content delivery, with a real-time view counter that tracks website visits.
 ## Architecture
 ![Diagram explaining the architecture of this project](Images/Architecture-diagram.png)
+
 The architecture consists of the following components:
 1. Amazon S3: Stores static website files like HTML, CSS, and JavaScript.
 2. Amazon CloudFront: Distributes website content globally, reducing latency.
