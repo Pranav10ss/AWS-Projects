@@ -56,7 +56,7 @@ dynamically obtain apply the desired configuration, enabling seamless updates an
   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
   ```
 * If the `status` is in `running state` then the CloudWatch Agent is successfully installed on the EC2 instance. 
-## **Step 4 - Verify Metrics in CloudWatch
+## **Step 4 - Verify Metrics in CloudWatch**
 * Go to Cloudwatch dashboard and navigate to `metrics`->`All metrics`, there you can see a metric called `CWAgent`. This
     can only be seen after installing the cloud watch agent on the EC2 instance.
 * Click on `CWAgent`-> `InstanceId`->Now it will show you all the instances with CloudWatch agent installed. Search for the
