@@ -36,7 +36,26 @@ This project demonstrates how to monitor the `memory utilization` of an Amazon E
 			}
 		}
 	}
-}
-```
+  }
+  ```
+  **Step 3 - Create an EC2 instance and install a CloudWatch agent on the instance by adding the userdata**
+  * Go to EC2 console-> `Launch instance`-> Under `Advanced details`-> `IAM instance profile` attach the IAM role that you
+    created.
+  * Under `Userdata` paste the following command to install the `CloudWatch` agent on the EC2 instance.
+  ```
+  #!/bin/bash
+   wget https://s3.amazonaws.com/amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip
+   unzip AmazonCloudWatchAgent.zip
+   sudo ./install.sh
+   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:/alarm/AWS-CWAgentConfig -s
+  ```
+  * Once the instance is in `Running` state and the `2/2 checks passed` status check is met, connect to the instance using 
+   `EC2 instance connect`. Once connected you can check whether the CW agent is installed or not. Use the following command 
+    to check the same:
+  ```
+  sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
+  ```
+  
+  
 
 
