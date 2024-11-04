@@ -55,7 +55,21 @@ This project demonstrates how to monitor the `memory utilization` of an Amazon E
   ```
   sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
   ```
-  
-  
-
+  * If the `status` is in `running state` then the CloudWatch Agent is successfully installed on the EC2 instance. 
+  **Step 4 - Verify Metrics in CloudWatch
+  * Go to Cloudwatch dashboard and navigate to `metrics`->`All metrics`, there you can see a metric called `CWAgent`. This
+    can only be seen after installing the cloud watch agent on the EC2 instance.
+  * Click on `CWAgent`-> `InstanceId`->Now it will show you all the instances with CloudWatch agent installed. Search for the
+    specific instance using the isntance's id.
+  * Once you click on the instance id, you can check the memory utilization of the EC2 instance in percentage. Based on this
+    you can create alarms.
+  * Go to alarms-> Create alarm-> Select metric-> select the metric as `CWAgent`-> `Instance id`-> Select the instance with
+    the cloudwatch agent installed for which you would like to check the memory utilization. Under `Specify metrics and
+    conditions`->Set the 'statistic' as `average` and 'Period' as `5 minutes`.
+    Set the 'Threshold type' as `Static`, define the desired 'alarm condition'(ex; Greater/equal>= threshold)
+  * Then define the `threshold value` in %. If the memory utilization is exceeding the `threshold value` you can configure
+    actions to send notifications to specified userd when the alarm triggers.
+## Conclusion
+  Monitoring memory utilization using the CloudWatch agent helps you capture vital performance data not available by
+  default, providing comprehensive insights for optimizing and managing EC2 instances effectively.
 
