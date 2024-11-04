@@ -5,7 +5,7 @@ In this project we will build a serverless web application which will allow user
 ![Diagram explaining the architecture of this project](Images/Architecture-diagram.png)
 
 The architecture consists of the following components:
-1. Amazon S3: Stores static website files like HTML, CSS, and JavaScript.
+1. <u>Amazon S3<u> : Stores static website files like HTML, CSS, and JavaScript.
 2. Amazon CloudFront: Distributes website content globally, reducing latency.
 3. Amazon Route 53: Manages the custom domain, routing traffic to the CloudFront distribution.
 4. AWS Certificate Manager (ACM): Provides SSL/TLS certificates to secure the site over HTTPS.
