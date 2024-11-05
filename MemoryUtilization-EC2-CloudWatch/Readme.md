@@ -1,11 +1,12 @@
 # Monitoring Memory utilization of EC2 using cloudwatch
 ## Objective of this project
-This project demonstrates how to monitor the `memory utilization` of an Amazon EC2 instance using Amazon CloudWatch. By default, CloudWatch monitors metrics like CPU usage, disk I/O, and network, but it does not monitor memory usage. This project shows how to set up the `CloudWatch` agent to send custom memory utilization metrics from an EC2 instance to CloudWatch.
+This project demonstrates how to monitor the `memory utilization` of an Amazon EC2 instance using Amazon CloudWatch. By default, CloudWatch monitors metrics like CPU usage, disk I/O, and network, but it does not monitor memory usage. This project shows how to set up the `CloudWatch agent` to send custom memory utilization metrics from an EC2 instance to CloudWatch.
    The CloudWatch agent extends the built-in monitoring capabilities of CloudWatch, allowing you to collect additional system-level metrics such as:
    * Memory Utilization
    * Disk space usage
    * Disk Swap usage
-   This enhanced monitoring is essential for gaining deeper insight into instance performance, helping to optimize resource usage and troubleshoot performance issues efficiently.
+
+This enhanced monitoring is essential for gaining deeper insight into instance performance, helping to optimize resource usage and troubleshoot performance issues efficiently.
 
 ## Steps to implement this project
 ## **Step 1 - Create an IAM role and attach `CloudWatchFullAccess` and `AmazonSSMFullAccess`**
