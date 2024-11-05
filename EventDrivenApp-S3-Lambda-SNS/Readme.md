@@ -1,7 +1,8 @@
 # Building an Event-driven-application on AWS using S3, Lambda and SNS
-## Project description
+## 📘Project description
 Building a simple event driven application in AWS. We will learn how to set-up a S3 bucket to trigger a lambda function whenever a new image is uploaded to the S3 bucket. This function processes the event and sends a notification to the subscribers/apps through Simple notification service(SNS).
 ## Project Architecture
+![Diagram explaining the architecture of this project](Images/Architecture-diagram.png)
 ## Project Workflow
 1. S3: Client/application uploads an image to S3 bucket. S3 is used to store the images uploaded by the user.
 2. Lambda: Lambda is a serverless compute service that lets you run code in response to an event. The S3 bucket is configured to trigger a Lambda function when an object is created. The Lambda function, written in Python, processes the S3 event to extract details such as the bucket name, object key etc., and publishes a message to an SNS topic.
@@ -60,5 +61,9 @@ Building a simple event driven application in AWS. We will learn how to set-up a
 #Replace your-region, your-account-id, and ImageUploadNotification with appropriate values from your SNS topic.
 ```
 * 'Deploy' the function. 
-  
-
+### **Testing the application:**
+* Upload an image to S3.
+* Check the Email inbox for notification.
+* If everything is configured correctly, you should receive a notification saying "Image uploaded to bucket {bucket_name} with key {object key}"
+## ✅Conclusion
+This project demonstrates how AWS services can be integrated to create an automated, event-driven notification system. It is a practical example of leveraging serverless architectures for responsive applications.
