@@ -32,7 +32,7 @@ Building a simple event driven application in AWS. We will learn how to set-up a
   triggered whenever an object is created/uploaded to the S3 bucket. At last click on `Add` to add the trigger.
 ### Step 6 - Write the Lambda function code
 * Using AWS SDK for python (Boto3) write a lambda function. Since Lambda function will interact with SNS topic the `Client` will be SNS. Attach the ARN of the SNS topic in place of `topic_arn`.
-  ```python
+```python
   import json
   import boto3
 
