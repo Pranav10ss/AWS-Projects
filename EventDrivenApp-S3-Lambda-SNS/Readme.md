@@ -29,5 +29,36 @@ Building a simple event driven application in AWS. We will learn how to set-up a
 ### Step 5 - Add a S3 trigger to the Lambda function
 * Go to Lambda function -> Click on `+ Add trigger` -> 'Select a source' as `S3`-> Select the name of the bucket which you
   have created for this project. Under 'Event types' select `All object create events`. Which means Lambda will get
-  triggered whenever an object is created/uploaded to the S3 bucket. At last click on `Add` to add the trigger. 
+  triggered whenever an object is created/uploaded to the S3 bucket. At last click on `Add` to add the trigger.
+### Step 6 - Write the Lambda function code
+* Using AWS SDK for python (Boto3) write a lambda function. Since Lambda function will interact with SNS topic the `Client` will be SNS. Attach the ARN of the SNS topic in place of `topic_arn`.
+  ```python
+  import json
+  import boto3
+
+  def lambda_handler(event, context):
+    sns_client = boto3.client('sns')
+    topic_arn = 'arn:aws:sns:your-region:your-account-id:ImageUploadNotification'
+    
+    # Parse the S3 event
+    for record in event['Records']:
+        bucket = record['s3']['bucket']['name']
+        key = record['s3']['object']['key']
+        message = f'Image uploaded to bucket {bucket} with key {key}'
+        
+        # Publish message to SNS
+        sns_client.publish(
+            TopicArn=topic_arn,
+            Message=message,
+            Subject='Image Upload Notification'
+        )
+        
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Notification sent successfully!')
+    }
+```
+
+# Replace your-region, your-account-id, and ImageUploadNotification with appropriate values from your SNS topic.
+  
 
