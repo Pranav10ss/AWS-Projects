@@ -57,8 +57,7 @@ Building a simple event driven application in AWS. We will learn how to set-up a
         'statusCode': 200,
         'body': json.dumps('Notification sent successfully!')
     }
+#Replace your-region, your-account-id, and ImageUploadNotification with appropriate values from your SNS topic.
 ```
-
-# Replace your-region, your-account-id, and ImageUploadNotification with appropriate values from your SNS topic.
   
 
