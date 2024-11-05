@@ -9,4 +9,25 @@ Building a simple event driven application in AWS. We will learn how to set-up a
    The **SNS topic** receives the message from the lambda function and then sends a notification to its subscribers through E-Mail.
 ## Steps to build this project
 ### Step 1 - Create a S3 bucket
-* hu
+* Go to AWS console-> S3-> create bucket -> Name the bucket and click on `create bucket`
+### Step 2 - Create an SNS Topic
+* Go to SNS -> Topics -> Create topic -> Select the 'type' of topic as `standard`.
+  *(Note that SNS `FIFO` topics have restrictions on the types of endpoints they can deliver messages to. They are designed to work primarily with Amazon SQS queues to maintain strict message ordering and deduplication.
+  SNS FIFO topics do not support delivery to endpoints like SMS, email, Lambda functions, or HTTP/HTTPS endpoints directly. This is because these endpoint types cannot guarantee the preservation of strict message ordering, which is a key feature of FIFO topics.)*
+* Name the topic as `ImageUploadNotification` and click on `create topic`.
+### Step 3 - Create a subscription for the SNS topic
+* Go to SNS -> Subscriptions -> Create subscription -> Enter the 'ARN' of the SNS topic under `Topic ARN`. Select the 
+  protocol as `Email`. Enter the Email address in the `Endpoint` field. At last click on `create subscription`.
+* Once the subscription is created you'll receive a mail from AWS to confirm the subscription. Click on the link provided in
+  the mail to confirm the SNS subscription. Once you confirm the subscription the status of the subscription changes from `pending confirmation` to `confirmed`.
+### Step 4 - Create a Lambda function
+* Go to `Lambda`-> `ceeate function`-> select `Author from scratch`. Give the name of the function as `ImageUploadProcessor`.
+  Select the latest python runtime. Under 'Change default execution role' select `create a new role with basic lambda 
+  permissions` which lets Lambda create an execution role named `ImageUploadProcessor-Role`. Then click on `Create function`.
+* You need to attach permissions policy to this lambda role in order to allow lambda function to access S3 events and to be 
+  able to send messages to SNS topic after processing the event. So attach `S3FullAccess` and `SNSFullAccess`.
+### Step 5 - Add a S3 trigger to the Lambda function
+* Go to Lambda function -> Click on `+ Add trigger` -> 'Select a source' as `S3`-> Select the name of the bucket which you
+  have created for this project. Under 'Event types' select `All object create events`. Which means Lambda will get
+  triggered whenever an object is created/uploaded to the S3 bucket. At last click on `Add` to add the trigger. 
+
