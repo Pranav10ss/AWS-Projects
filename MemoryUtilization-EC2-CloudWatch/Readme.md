@@ -12,7 +12,7 @@ This enhanced monitoring is essential for gaining deeper insight into instance p
 ## **Step 1 - Create an IAM role and attach `CloudWatchFullAccess` and `AmazonSSMFullAccess`**
 * Go to IAM->`Create Role`-> select `Trusted entity type` as `AWS service` and `Use case` as `EC2`.
 * Attach `CloudWatchFullAccess` and `AmazonSSMFullAccess` permission policy to the role. We need to attach
-`CloudWatchFullAccess` inorder to allow EC2 instance to send the memory utilization data to cloudwatch. We need to attach
+`CloudWatchFullAccess` in order to allow EC2 instance to send the memory utilization data to cloudwatch. We need to attach
 `AmazonSSMFullAccess` because, we are going to store a parameter(JSON file) in `AWS systems manager parameter store`.
 The parameter specifies cloudwatch agent the metrics to collect and the frequency of data reporting. The CloudWatch agent
 installed on the instance will fetch the JSON configuration file from the parameter store. This set-up allows CW agent to
@@ -42,7 +42,8 @@ dynamically obtain apply the desired configuration, enabling seamless updates an
 ## **Step 3 - Create an EC2 instance and install a CloudWatch agent on the instance by adding the userdata**
 * Go to EC2 console-> `Launch instance`-> Under `Advanced details`-> `IAM instance profile` attach the IAM role that you
   created.
-* Under `Userdata` paste the following command to install the `CloudWatch` agent on the EC2 instance.
+* Under `Userdata` paste the following command to install the `CloudWatch` agent on the EC2 instance. This script sets up the Amazon CloudWatch Agent on the EC2 instance, retrieves a pre-defined configuration from the SSM
+  Parameter Store, and starts the agent. This allows the instance to send custom metrics, such as memory utilization and other system-level data, to Amazon CloudWatch.
   ```
   #!/bin/bash
    wget https://s3.amazonaws.com/amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip
