@@ -1,1 +1,18 @@
+.container {
+    max-width: 400px;
+    margin: auto;
+    padding: 10px;
+}
 
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+}
