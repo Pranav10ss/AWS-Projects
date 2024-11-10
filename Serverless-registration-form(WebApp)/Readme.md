@@ -1,5 +1,5 @@
 # Serverless Registration form
-## Project Overview
+## 📄Project Overview
 The **serverless registration form** is serverless web application built using AWS services: API Gateway, Lambda, and DynamoDB. The main goal of this project is to provide a scalable and cost-effective solution for collecting user registration data without maintaining a traditional server.
 ## Project Architecture
 ![Diagram explaining the architecture of this project](Images/Architecture-diagram.png)
@@ -47,7 +47,7 @@ The **serverless registration form** is serverless web application built using A
   replace existing CORS headers`.
 * At last Click on `Deploy API`. Enter the 'Deployment stage' as `[New Stage]`, 'Stage name' as `prod`.Click on `Deploy`.
   Once deployed you need to copy the `Invoke URL` and paste it in the `Frontend`(i.e..Javascript code).
-* ## 🔍 Testing
+## 🔍 Testing
   You can verify the data directly in the DynamoDB console by viewing the items in the `registration-table` table.
 ## 📚 Conclusion
   This project demonstrates how to build a serverless registration form using AWS services, providing a scalable and 
