@@ -2,6 +2,7 @@
 ## Project Overview
 The **serverless registration form** is serverless web application built using AWS services: API Gateway, Lambda, and DynamoDB. The main goal of this project is to provide a scalable and cost-effective solution for collecting user registration data without maintaining a traditional server.
 ## Project Architecture
+![Diagram explaining the architecture of this project](Images/Architecture-diagram.png)
 ## Step 1 - Create a dynamoDB table
 * Go to DynamoDB console-> `Create table`-> Enter the table name as `registration-table` and Partition Key as `email`(String).
   (Primary key should be unique for each item in the table. In this table we will use `email` as the primary key since it is
