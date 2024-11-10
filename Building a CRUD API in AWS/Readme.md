@@ -19,7 +19,7 @@ The goal of this project is to create a simple, scalable, and cost-effective HTT
 ## Step 3 - Create a HTTP API using API Gateway
 * Go to API Gateway'and choose `HTTP API` type and click on `build`.
 * Enter the name as `http-crud-tutorial-api`. Keep all other things as default and click on `create`.
-## Step 4 - Create routes 
+## Step 4 - Create routes and manage integrations
 * Define routes and integrate them with the Lambda function.
 * To create 'Routes', Go to `Routes`->`Create`-> Select the method and enter the path.
 ```
@@ -30,3 +30,27 @@ DELETE /items/{id}               #Delete an item by its ID
 ```
 * To integrate the routes with lambda function, go to `Integrations` and select each route at a time and attach the lambda
   function.
+* Soon after you do this you get an `API invole URL`.
+## Step 5 - Deploy the Python code to the Lambda function
+* copy the function code from `lambda-CRUD.py`
+* Click on `Deploy`
+## Step 6 - Test the API endpoints
+* GET Request - Retrieve Item by ID
+```
+curl -X GET "https://<api-id>.execute-api.<region>.amazonaws.com/items/1"
+```
+* GET Request - Retrieve All Items
+```
+curl -X GET "https://<api-id>.execute-api.<region>.amazonaws.com/items"
+```
+* PUT Request - Create or Update an Item
+```
+curl -X PUT "https://<api-id>.execute-api.<region>.amazonaws.com/items" -H "Content-Type: application/json" -d "{\"id\": \"psmn@gmail.com\", \"age\": \"26\", \"Height\": \"183cm\"}"
+```
+* DELETE Request - Delete Item by ID
+```
+curl -X DELETE "https://<api-id>.execute-api.<region>.amazonaws.com/items/1"
+
+```
+
+
