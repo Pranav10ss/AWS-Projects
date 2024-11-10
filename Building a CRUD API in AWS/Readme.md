@@ -45,12 +45,14 @@ curl -X GET "https://<api-id>.execute-api.<region>.amazonaws.com/items"
 ```
 * PUT Request - Create or Update an Item
 ```
-curl -X PUT "https://<api-id>.execute-api.<region>.amazonaws.com/items" -H "Content-Type: application/json" -d "{\"id\": \"psmn@gmail.com\", \"age\": \"26\", \"Height\": \"183cm\"}"
+curl -X PUT "https://<api-id>.execute-api.<region>.amazonaws.com/items" -H "Content-Type: application/json" -d "{\"id\": \"psmn@gmail.com\", \"name\": \"pranav\", \"Height\": \"183cm\"}"
 ```
 * DELETE Request - Delete Item by ID
 ```
 curl -X DELETE "https://<api-id>.execute-api.<region>.amazonaws.com/items/1"
 
 ```
+## 🏆Conclusion
+This project helps us in understanding the basics of creating a serverless CRUD API. It demonstrates key concepts in serverless architecture and provides a scalable solution for building modern web APIs.
 
 
