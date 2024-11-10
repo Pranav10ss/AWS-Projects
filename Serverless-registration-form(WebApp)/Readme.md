@@ -15,7 +15,7 @@ The **serverless registration form** is serverless web application built using A
 * Give the role a name and Click on `Create Role`.
 ## Step 3 - Create a Lambda function
 * In this step we will create a Lambda function that will handle form submission and store the data to dynamoDB table. We
-  will python as our Lambda function's programming language. 
+  will use python as our Lambda function's programming language. 
 * Go to Lambda console-> `Create function`-> Enter the function name as `registration-form-function`. Select the latest
   python runtime. Under 'Change default execution role' select `Use an existing role` and choose the IAM role that you
   created in the last step. Then click on `Create function`.
