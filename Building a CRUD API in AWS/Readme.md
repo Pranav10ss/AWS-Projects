@@ -11,13 +11,15 @@ The goal of this project is to create a simple, scalable, and cost-effective HTT
 * Create a dynamoDB table with name `http-crud-tutorial-items`
 * Enter the Primary key as `id`
 ## Step 2 - Create an IAM Role for the Lambda funtion
-* Create an IAM role to allow Lambda function to allow access to dynamoDB. Attach `AmazonDynamoDBFullAccess` permissions policy.
+* Create an IAM role to allow Lambda function to access dynamoDB. Attach `AmazonDynamoDBFullAccess` permissions policy.
+* Attach `Cloudwatchfullaccess` so that if there's any error while running the code you can check cloudwatch logs for
+  monitoring.
 ## Step 3 - Create the Lambda function
 * Enter the function name as `http-crud-tutorial-function`. Select the runtime as `Python 3.9`
 * Under `Change default execution role` select the role that you created in the last step and attach it to the function.
 * Click on `Create function`.
 ## Step 3 - Create a HTTP API using API Gateway
-* Go to API Gateway'and choose `HTTP API` type and click on `build`.
+* Go to 'API Gateway'and choose `HTTP API` type and click on `build`.
 * Enter the name as `http-crud-tutorial-api`. Keep all other things as default and click on `create`.
 ## Step 4 - Create routes and manage integrations
 * Define routes and integrate them with the Lambda function.
@@ -28,9 +30,9 @@ GET /items                       #Retrieve all items
 PUT /items                       #Create or update an item
 DELETE /items/{id}               #Delete an item by its ID
 ```
-* To integrate the routes with lambda function, go to `Integrations` and select each route at a time and attach the lambda
+* To integrate the routes with lambda function, go to `Integrations` and select one route at a time and attach the lambda
   function.
-* Soon after you do this you get an `API invole URL`.
+* Soon after you do this you get an `API invoke URL`.
 ## Step 5 - Deploy the Python code to the Lambda function
 * copy the function code from `lambda-CRUD.py`
 * Click on `Deploy`
