@@ -91,7 +91,7 @@ In this project, we design and implement a Scalable Storage Solution using AWS E
   ```
   sudo mount -t efs -o tls fs-03244d7a93c175325.efs.us-east-1.amazonaws.com:/ ~/efs-mount-point
   ```
-## Conclusion
+## ✅Conclusion
 * Your team can now access the same files across different AZs with zero latency.
 * The storage scales as your buisness needs.
 * Data is securely transferred with in-transit encryption.
