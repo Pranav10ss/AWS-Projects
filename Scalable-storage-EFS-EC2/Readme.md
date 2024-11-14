@@ -29,11 +29,11 @@ In this project, we design and implement a Scalable Storage Solution using AWS E
   ```
   aws ec2 authorize-security-group-ingress --group-name StorageLabs --protocol tcp --port 22 --cidr 0.0.0.0/0
   ```
-* **Launch EC2 in `us-east-1a`: Launch the first instance in AZ 1a (Name this instance as `server-a`)
+* **Launch EC2 in `us-east-1a`: Launch the first instance in AZ 1a (Name this instance as `server-a`)**
   ```
   aws ec2 run-instances --image-id ami-063d43db0594b521b --instance-type t2.micro --placement AvailabilityZone=us-east-1a --security-group-ids sg-0cc8c44750260890b
   ```
-* **Launch EC2 in `us-east-1b`: Launch the first instance in AZ 1b (Name this instance as `server-b`)
+* **Launch EC2 in `us-east-1b`: Launch the first instance in AZ 1b (Name this instance as `server-b`)**
   ```
   aws ec2 run-instances --image-id ami-063d43db0594b521b --instance-type t2.micro --placement AvailabilityZone=us-east-1b --security-group-ids sg-0cc8c44750260890b
   ```
