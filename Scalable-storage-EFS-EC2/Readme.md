@@ -40,10 +40,11 @@ In this project, we design and implement a Scalable Storage Solution using AWS E
 *Now we have two EC2 instances in two different AZs, ready to share files from EFS.*
 ### Step 2 - Creating and configuring AWS EFS(Elastic File system)
 * SetUp an AWS EFS that both EC2 instances can access, making it easy to share data between them.
-* **Create an EFS file system**: Go to AWS console-> EFS -> `Create file system` -> name the EFS and select the VPC. Click on `Customize`, under `Network access` configure the `Mount targets`. 
+* **Create an EFS file system**: Go to AWS console-> EFS -> `Create file system` -> name the EFS and select the VPC. Click
+  on `Customize`, under `Network access` configure the `Mount targets`. Select the VPC,Availability zones, subnet and
+  attach the Security group that you created earlier. Then click on `Create`. 
 * **Add NFS Protocol Rule**: Update the security group that you created earlier with 'Allow' inbound traffic i.e NFS
-  traffic(`port 2049`) for EFS to allow EC2 instances to connect and access shared file systems. Select the VPC,
-  Availability zones, subnet and attach the Security group that you created earlier. Then click on `Create`. 
+  traffic(`port 2049`) for EFS to allow EC2 instances to connect and access shared file systems. 
   ```
   aws ec2 authorize-security-group-ingress --group-id sg-0cc8c44750260890b --protocol tcp --port 2049 --source-group sg-0cc8c44750260890b
   ```
