@@ -5,13 +5,20 @@ In this project, we design and implement a Scalable Storage Solution using AWS E
 ## Architecture diagram
 ![Diagram explaining the architecture of this project](Images/Architecture-diagram.png)
 ### Key components:
-   * EC2 instances: EC2 instances serve as the clients that access and utilize the shared storage provided by Amazon EFS. EC2 
+   * **EC2 instances**: EC2 instances serve as the clients that access and utilize the shared storage provided by Amazon EFS. EC2 
      instances are deployed in multiple Availability Zones (AZs) to access the shared file system (EFS) concurrently. This setup
      allows production teams to work on the same set of media files from different servers without needing to copy or transfer
      files between instances.
      The EC2 instances use NFS to mount the EFS file system. The secure data transfer between EC2 and EFS is encrypted in 
      transit using TLS, ensuring that sensitive files are protected.
-   * VPC with Subnets: The infrastructure is set up within a Virtual Private Cloud (VPC) with subnets in different AZs.
-   * Security Groups: Control inbound and outbound traffic for the EC2 instances and EFS mount targets.
-   * Amazon Elastic File System (EFS): Provides scalable, high-performance, and highly available shared storage for multiple
-     EC2 instances.
+   * **VPC with Subnets**: The infrastructure is set up within a Virtual Private Cloud (VPC) with subnets in different AZs.
+   * **Security Groups**: Control inbound and outbound traffic for the EC2 instances and EFS mount targets.
+   * **Amazon Elastic File System (EFS)**: Provides scalable, high-performance, and highly available shared storage for
+     multiple EC2 instances.
+
+## Project Set-Up:
+### Step 1 - Launching EC2 instances in Multiple Availabilty Zones
+* Launch two EC2 instances in different AZs to ensure high availability, performance and redundancy. Both instances will
+  share access to the same AWS EFS.
+* **Create a Security group**: We need to create a SG to keep things safe.
+  
