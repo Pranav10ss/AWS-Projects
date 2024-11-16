@@ -35,7 +35,7 @@ The goal of this project is to establish connectivity between two distinct AWS V
 * In security group of the instance in **VPC-B** we need to allow `All ICMP` in inbound rules. Because, when we connect to
   instance(VPC-B) from instance(VPC-A) through Session manager we need to use PING. PING will use ICMP protocol.
 * Edit the inbound rules of instance's(VPC-B) security group. Add the Network type as `All ICMP - IPv4`. Under **Source**,
-  reference the security group ID of instance in VPC-A where the request will be originating from.
+  reference the security group ID of instance as **VPC-A** where the request will be originating from.
 ### Step 4 - Configure VPC Routing
 * Go to VPC console -> Route tables -> Click on VPC-A -> Routes -> We need to add the destination adress i.e, the CIDR of
   VPC-B. Click on Edit routes, Under `Add route` enter VPC-Bs CIDR(`10.17.0.0/16`). Under **Target** select `Peering
