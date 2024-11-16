@@ -34,5 +34,5 @@ jobs:
             sudo apt-get install -y apache2
             sudo systemctl start apache2
             sudo systemctl enable apache2
-            cd home
+            cd Host-Resume-on-EC2
             sudo mv * /var/www/html
