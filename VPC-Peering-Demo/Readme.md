@@ -31,4 +31,22 @@ The goal of this project is to establish connectivity between two distinct AWS V
   verify the CIDR of both VPCs.
 * After creating the peering you'll have to accept the peering connection. Click on `Actions` and you'll find an option as
   `Accept request`. Click on it to accept the peering connection between two VPCs.
-### Step 3 - Security group configuration
+### Step 3 - EC2 Security group configuration
+* In security group of the instance in **VPC-B** we need to allow `All ICMP` in inbound rules. Because, when we connect to
+  instance(VPC-B) from instance(VPC-A) through Session manager we need to use PING. PING will use ICMP protocol.
+* Edit the inbound rules of instance's(VPC-B) security group. Add the Network type as `All ICMP - IPv4`. Under **Source**,
+  reference the security group ID of instance in VPC-A where the request will be originating from.
+### Step 4 - Configure VPC Routing
+* Go to VPC console -> Route tables -> Click on VPC-A -> Routes -> We need to add the destination adress i.e, the CIDR of
+  VPC-B. Click on Edit routes, Under `Add route` enter VPC-Bs CIDR(`10.17.0.0/16`). Under **Target** select `Peering
+  Connection` and select the VPC peering connection that you have created. Click on `Save changes`.
+* You need to make the same changes in the route table of VPC-B. Add VPC-As CIDR(`10.16.0.0/16`). Select the peering
+  connection and click on `Save changes`.
+### Testing
+To verify if the peering connection is working properly, Connect to the instance in VPC-A through session manager. Copy the private IPv4 address of instance(VPC-B). From the instance in VPC A, attempt to ping the private IP of the instance in VPC B.
+```
+ping {instance(VPC-B) IPv4 address}
+```
+If the peering and routing are correctly configured, the instances should be able to communicate and we should receive a response back from instance in VPC-B.
+## Conclusion
+This project demonstrates how to establish a VPC peering between two different VPCs using AWS CloudFormation to automate resource provisioning. The VPC peering setup enables secure, private communication between instances across different VPCs. It showcases a scalable and efficient way to extend network architectures within the AWS environment.
