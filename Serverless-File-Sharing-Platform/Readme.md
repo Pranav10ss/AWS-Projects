@@ -61,9 +61,7 @@ The project was implemented with the following AWS services:
 ## 🔍Testing the Platform
 ### Upload a File: 
 ```
-curl --location "https://lnbdggd6oe.execute-api.us-east-1.amazonaws.com/dev/files?fileName=test.txt" \
---header "Content-Type: text/plain" \
---data "Hello from pranav!"
+curl --location "https://lnbdggd6oe.execute-api.us-east-1.amazonaws.com/dev/files?fileName=test.txt" --header "Content-Type: text/plain" --data "Hello from Pranav!"
 ```
 * Response: `File uploaded successfully!`
 ### Download a File:
@@ -71,6 +69,6 @@ curl --location "https://lnbdggd6oe.execute-api.us-east-1.amazonaws.com/dev/file
 curl --location "https://lnbdggd6oe.execute-api.us-east-1.amazonaws.com/dev/files?fileName=test.txt"
 
 ```
-* Response: Base64-encoded content of `test.txt`, which can be decoded to retrieve the original file content.
+* Response: Base64-encoded content of `test.txt`, which can be decoded to retrieve the original file content. If you decode the Base64-encoded text you can see "Hello from Pranav!" text.
 ## ✅Conclusion
 The Serverless File Sharing Platform successfully demonstrates a cost-efficient and scalable solution using AWS serverless services. By leveraging Lambda, S3, and API Gateway, the system avoids traditional server management and provides a flexible file-sharing API that can handle a variety of file types and sizes. The implementation showcases how to build a fully managed backend that can scale automatically based on demand, ensuring high availability and reliability for file operations.
