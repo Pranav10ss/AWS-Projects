@@ -58,7 +58,7 @@ The project was implemented with the following AWS services:
 ```
 * Deployed the API to a stage (e.g., dev) via API Gateway's deployment feature.
 * Once deployed, a API invoke URL will be created.
-## Testing the Platform
+## 🔍Testing the Platform
 ### Upload a File: 
 ```
 curl --location "https://lnbdggd6oe.execute-api.us-east-1.amazonaws.com/dev/files?fileName=test.txt" \
