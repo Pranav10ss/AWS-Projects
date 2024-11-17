@@ -9,19 +9,19 @@ The project was implemented with the following AWS services:
 ### Step 1 - Amazon S3 Bucket Setup
 * Bucket Name: `my-file-sharing-bucket-pranav`
 * **Purpose**: The S3 bucket serves as the storage layer for the file-sharing platform, enabling object storage and retrieval.
-## Step 2 - Create an IAM Role for Lambda function
+### Step 2 - Create an IAM Role for Lambda function
 * An IAM role is needed with permissions to allow the Lambda functions to interact with the S3 bucket.
 * We need to attach an **inline policy** to the IAM role.
-## Step 3 - Create a Lambda function for Uploading files
+### Step 3 - Create a Lambda function for Uploading files
 * Function Name: `Upload-function`
 * **Purpose**: This Lambda function handles file uploads to the S3 bucket. The function receives file content directly from the HTTP request body and saves it to S3 with a specified file name.
 * The function receives the `fileName` as a query string parameter and the file content in the request body.
-## Step 4 - Create a Lambda function for downloading files
+### Step 4 - Create a Lambda function for downloading files
 * Function Name: `Download-function`
 * **Purpose**: This Lambda function retrieves files from the S3 bucket and returns the file content in a Base64-encoded format.
 * The function retrieves the `fileName` as a query string parameter.
 * The retrieved file content is Base64-encoded to handle binary data in HTTP responses.
-## Step 5 - API Gateway Configuration
+### Step 5 - API Gateway Configuration
 * **Purpose**: API Gateway provides a RESTful API interface for the upload and download operations.
 * Create a REST API.
 * Create resource: `/files` will be the Resource path. Also we should enable CORS(Cross Origin Resource Sharing).
