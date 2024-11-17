@@ -7,7 +7,7 @@ The Serverless File Sharing Platform was designed to create a simple, cost-effec
 ## Steps to Build the Project
 The project was implemented with the following AWS services:
 ### Step 1 - Amazon S3 Bucket Setup
-* Bucket Name: `my-file-sharing-bucket-amc-pranav`
+* Bucket Name: `my-file-sharing-bucket-pranav`
 * **Purpose**: The S3 bucket serves as the storage layer for the file-sharing platform, enabling object storage and retrieval.
 ## Step 2 - Create an IAM Role for Lambda function
 * An IAM role is needed with permissions to allow the Lambda functions to interact with the S3 bucket.
