@@ -32,8 +32,12 @@ The project was implemented with the following AWS services:
   * Go to Method request-> Edit-> Select the **Request Validator** as `Validate query string parameters and headers`.
   * Under **Request body**-> Enter the **content type** as `text/plain`
   * The **Mapping Template** transforms the incoming HTTP request into a format that the Lambda function can process.
-  * Go to integration request-> Edit-> Enter the **content type** as `application/json`. Under **Mapping templates** paste the
-    following:
+  * The **content type** header in an HTTP request indicates the media type of the resource being sent. It helps the server
+    understand how to interpret the data in the body of the request. For instance:
+    **Content-Type**: `text/plain`: The request body is plain text.
+    **Content-Type**: `application/json`: The request body is JSON-formatted data.
+  * Go to integration request-> Edit-> Enter the **content type** as `application/json`. By specifying `application/json`, the API Gateway ensures that the incoming request data is processed as JSON. This consistency makes it easier to extract query parameters or other structured information in the Lambda function. Under **Mapping templates** paste
+    the following:
 ```
   {
   "queryStringParameters": {
@@ -42,7 +46,7 @@ The project was implemented with the following AWS services:
 }
 ```
 * **POST Method Configuration (Upload)**:
-  * Go to **integration request**-> Select integration type as `Lambda Function`. Under **Mapping templates**-> Enter the **Content type** as `text/plain`. Under template body paste the following:
+  * Go to **integration request**-> Select integration type as `Lambda Function`. Under **Mapping templates**-> Enter the **Content type** as `text/plain`. By specifying `text/plain`, you inform API Gateway and the Lambda function that the request body is simple, unformatted text.Under template body paste the following:
 ```
 {
   "body" : "$input.body",
