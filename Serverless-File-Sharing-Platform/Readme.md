@@ -27,8 +27,11 @@ The project was implemented with the following AWS services:
 * Create resource: `/files` will be the Resource path. Also we should enable CORS(Cross Origin Resource Sharing).
 * Create method: Create `POST` method and `GET` method and select the integration type as `Lambda function` and associate them with `Upload-function` and `Download-function` respectively.
 * **GET Method Configuration (Download)**:
+  * We have added **query string parameter** as `filename` in the Lambda **upload-function**. This parameter will be used to
+    identify the name of the file being uploaded.
   * Go to Method request-> Edit-> Select the **Request Validator** as `Validate query string parameters and headers`.
   * Under **Request body**-> Enter the **content type** as `text/plain`
+  * The **Mapping Template** transforms the incoming HTTP request into a format that the Lambda function can process.
   * Go to integration request-> Edit-> Enter the **content type** as `application/json`. Under **Mapping templates** paste the
     following:
 ```
