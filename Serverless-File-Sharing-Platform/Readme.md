@@ -1,5 +1,5 @@
 # Serverless File Sharing Platform on AWS
-## Purpose of the project
+## 📌Purpose of the project
 The Serverless File Sharing Platform was designed to create a simple, cost-effective, and scalable solution for securely uploading and downloading files via a RESTful HTTP API. Utilizing AWS services like Lambda for compute, API Gateway for API management, and S3 for object storage, this project aims to provide a serverless, fully managed, and highly available solution for file sharing. Users can interact with the platform using any HTTP client (like Postman), making it versatile for various use cases that involve file sharing and storage. The main goal is to avoid the complexity of managing traditional server infrastructure, while ensuring secure and efficient file handling.
 ## Architecture
 ![Diagram explaining the architecture of this project](Images/Architecture-diagram.svg)
