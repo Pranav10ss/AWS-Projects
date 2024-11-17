@@ -29,7 +29,7 @@ The project was implemented with the following AWS services:
 * **GET Method Configuration (Download)**:
   * Go to Method request-> Edit-> Select the **Request Validator** as `Validate query string parameters and headers`.
   * Under **Request body**-> Enter the **content type** as `text/plain`
-  * Go to integration request-> Edit-> Enter the content type as `application/json`. Under **Mapping templates** paste the
+  * Go to integration request-> Edit-> Enter the **content type** as `application/json`. Under **Mapping templates** paste the
     following:
 ```
   {
