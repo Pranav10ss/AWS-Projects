@@ -35,8 +35,8 @@ The project was implemented with the following AWS services:
   * The **content type** header in an HTTP request indicates the media type of the resource being sent. It helps the server
     understand how to interpret the data in the body of the request.
   * For instance:
-    **Content-Type**: `text/plain`: The request body is plain text.
-    **Content-Type**: `application/json`: The request body is JSON-formatted data.
+    * If the **Content-Type**: `text/plain`: The request body is plain text.
+    * If the **Content-Type**: `application/json`: The request body is JSON-formatted data.
   * Go to integration request-> Edit-> Enter the **content type** as `application/json`. By specifying `application/json`, the API Gateway ensures that the incoming request data is processed as JSON. This consistency makes it easier to extract query parameters or other structured information in the Lambda function. Under **Mapping templates** paste
     the following:
 ```
