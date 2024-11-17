@@ -2,7 +2,7 @@ import json
 import boto3
 
 s3 = boto3.client('s3')
-BUCKET_NAME = 'my-file-sharing-bucket-amc-pranav'
+BUCKET_NAME = 'my-file-sharing-bucket-pranav'
 
 def lambda_handler(event, context):
     try:
