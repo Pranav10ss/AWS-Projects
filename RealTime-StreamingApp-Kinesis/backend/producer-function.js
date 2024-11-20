@@ -26,9 +26,9 @@ exports.handler = async (event) => {
     })
 };
 
-async function sendtoKinesis(payload, partitionKey) {
+async function sendToKinesis(payload, partitionKey) {
     const params = {
-        Data: JSON.stringfy(payload)
+        Data: JSON.stringfy(payload),
         PartitionKey: partitionKey,
         StreamName: 'pranav-data-stream'
     }
