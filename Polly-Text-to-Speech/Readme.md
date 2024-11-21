@@ -7,7 +7,6 @@ The primary objective of this project is to create an automated system that conv
 ### Step 1 - Create a source S3 bucket
 * Create a Source S3 bucket to store the text files.
 * Go to S3 console, create a bucket with default settings.
-*Now we have two EC2 instances in two different AZs, ready to share files from EFS.*
 ### Step 2 - Create a destination S3 bucket
 * Create a destination S3 bucket to store the audio files.
 * Go to S3 console, create a bucket with default settings.
