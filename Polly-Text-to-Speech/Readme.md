@@ -15,7 +15,8 @@ The primary objective of this project is to create an automated system that conv
 * In order to allow Lambda function to access S3 bucket, Amazon Polly and execute basic functions attach an IAM role to the
   function.
 * Create a IAM policy and paste the following JSON code:
-  ```
+
+ ```
   {
   "Version": "2012-10-17",
   "Statement": [
@@ -39,7 +40,8 @@ The primary objective of this project is to create an automated system that conv
       }
   ]
 }
-  ```
+```
+
 * Create a role in the IAM console and attach the above inline policy. Also attach `AWSLambdaBasicExecutionRole`
 * Make sure that the role has `trust relationship policy` attached so that Lambda service has permission to assume the role
   and act on behalf of the function.
