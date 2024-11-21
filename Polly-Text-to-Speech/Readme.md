@@ -47,6 +47,24 @@ The primary objective of this project is to create an automated system that conv
   and act on behalf of the function.
 ### Step 4 - Create a Lambda function
 * Go to lambda console -> create function -> select Python 3.X as the runtime.
-* Under **Change default execution role** , choose the execution role that you created in the last step. 
+* Under **Change default execution role** , choose the execution role that you created in the last step.
+* After configuring the Lambda function, go to **configuration** and add environment variables. Enter the key as
+  `SOURCE_BUCKET` and under **value** enter the name of your source bucket. Similarly Enter the key as 
+  `DESTINATION_BUCKET`and under **value** enter the name of your destination bucket.
+### Step 5 - Add a Lambda trigger
+* Set up a trigger to notify the lambda function on new object creation events in the source S3 bucket with `.txt` as 
+  **suffix**.
+* Go to the lambda function click on `Add trigger`, select the source as `S3` and select the **source bucket**. Under
+  **Event types**, select `All object create events`.
+* Add the suffix as `.txt`.
+### Step 6 - Write a Lambda function code
+* Write a Lambda function to process the text file.
+* Go through the *Amazon Polly documentation* to know about different **VoiceIds**.
+* Paste the code and deploy the code.
+## Testing
+ Create a text file. Add the text file to the source bucket. Once uploaded, the lambda function is triggered. Lambda will
+read the text file, Processes the text with **Amazon Polly** to generate an audio stream and uploads the audio file to the
+destination bucket.
+ You can also check `cloudwatchLogs` under **Monitor** section of the Lambda function to analyze the event flow.
 ## ✅Conclusion
 `
