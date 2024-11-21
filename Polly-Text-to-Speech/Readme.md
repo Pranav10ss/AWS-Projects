@@ -66,4 +66,4 @@ read the text file, Processes the text with **Amazon Polly** to generate an audi
 destination bucket.
  You can also check `cloudwatchLogs` under **Monitor** section of the Lambda function to analyze the event flow.
 ## ✅Conclusion
-`
+   This project successfully demonstrates a serverless application for converting text to speech using AWS services. The integration of S3 for file storage, Lambda for compute, and Polly for speech synthesis showcases the flexibility and power of AWS's cloud-native tools. The application is scalable, cost-effective, and adaptable for various real-world scenarios, such as e-learning, audiobook creation, and accessibility solutions.
