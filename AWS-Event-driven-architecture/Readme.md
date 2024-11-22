@@ -41,7 +41,7 @@ The system performs the following tasks:
 * In the access policy, mark `queue1` to the first Lambda function i.e, `event-driven-function1` and `queue2` to the second 
   Lambda function i.e, `event-driven-function2`.
 * After creating the IAM roles, create the lambda functions `event-driven-function1` and `event-driven-function2` with
-  respective roles attached.
+  respective roles attached. Select the runtime as `python 3.8`.
 * Below is the Lambda function code which is same for both the functions.
   
   ```python
@@ -54,3 +54,23 @@ The system performs the following tasks:
           'body': json.dumps('Hello from Lambda!')
       }
   ```
+### Step 5 - connect all the components
+1. Connect S3 to SNS:
+   * Create an S3 Event. Go to **Event Notifications** and name the event as `NewObjectNotifier`. Select event type as `All
+     object create events`.
+   * Select the **destination** as `SNS Topic` and choose the topic that you've created.
+2. Connect SNS Topic to SQS queues:
+   * Create two **Subscriptions** one for `queue1` and another for `queue2`.
+   * We need to attach **Subscription filter policy** which allows SNS to filter messages/events and forward only the
+     specific event to specific SQS queue.
+   * Attach the following policy to queue1's subscription. Only the `PUT` related events will be forwarded to this stream.
+  ```json 
+  {
+  "Records": {
+    "eventName": [
+      "ObjectCreated:Put"
+    ]
+  }
+}
+```
+   
