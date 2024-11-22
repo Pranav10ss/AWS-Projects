@@ -43,13 +43,14 @@ The system performs the following tasks:
 * After creating the IAM roles, create the lambda functions `event-driven-function1` and `event-driven-function2` with
   respective roles attached.
 * Below is the Lambda function code which is same for both the functions.
-```JSON
-  import json
-
-def lambda_handler(event, context):
-    print(json.dumps(event))
-    return {
-        'statusCode': 200,
-        'body': json.dumps('Hello from Lambda!')
-    }
-```
+  
+  ```python
+    import json
+  
+  def lambda_handler(event, context):
+      print(json.dumps(event))
+      return {
+          'statusCode': 200,
+          'body': json.dumps('Hello from Lambda!')
+      }
+  ```
