@@ -64,7 +64,7 @@ The system performs the following tasks:
    * We need to attach **Subscription filter policy** which allows SNS to filter messages/events and forward only the
      specific event to specific SQS queue.
    * Attach the following policy to queue1's subscription. Only the `PUT` related events will be forwarded to this stream.
-  ```json 
+```json 
   {
   "Records": {
     "eventName": [
