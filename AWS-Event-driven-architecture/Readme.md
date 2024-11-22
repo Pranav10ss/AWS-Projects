@@ -55,15 +55,16 @@ The system performs the following tasks:
       }
   ```
 ### Step 5 - connect all the components
-1. Connect S3 to SNS:
+1. **Connect S3 to SNS**:
    * Create an S3 Event. Go to **Event Notifications** and name the event as `NewObjectNotifier`. Select event type as `All
      object create events`.
    * Select the **destination** as `SNS Topic` and choose the topic that you've created.
-2. Connect SNS Topic to SQS queues:
+2. **Connect SNS Topic to SQS queues**:
    * Create two **Subscriptions** one for `queue1` and another for `queue2`.
    * We need to attach **Subscription filter policy** which allows SNS to filter messages/events and forward only the
      specific event to specific SQS queue.
-   * Attach the following policy to queue1's subscription. Only the `PUT` related events will be forwarded to this stream.
+   * Attach the following policy to queue1's subscription. Only the `Put` related events will be forwarded to this stream.
+     Under **Subscription filter policy**, choose **Filter policy scope** as `Message body` and paste the following JSON code
 ```json 
   {
   "Records": {
@@ -73,4 +74,28 @@ The system performs the following tasks:
   }
 }
 ```
-   
+   * Attach the following policy to queue2's subscription. Only the `Copy` related events will be forwarded to this stream.
+     Under **Subscription filter policy**, choose **Filter policy scope** as `Message body` and paste the following JSON code
+```json 
+  {
+  "Records": {
+    "eventName": [
+      "ObjectCreated:Copy"
+    ]
+  }
+}
+```
+3. **Connect SQS queues to the Lambda function**:
+   * Go to SQS console, under **Lambda triggers** configure the `queue1` to `event-driven-function1` and `queue2` to `event-
+     driven-function2`.
+   * If you check the lambda function console you can see that the trigger will be set to SQS.
+## Testing
+1. **First event - Put object:**
+   * Upload any file to the S3 bucket. Once the upload is successful you have to check the cloudwatch logs of `event-driven-
+     function1` to check whether the event is printed.
+2. **Second event - Copy object:**
+   * Add the same bucket as destination to copy the object and add a prefix to it. (Example Format: `s3://{bucket-
+     name}/{prefix/}`)
+   * This time the SNS will filter it and push it to queue2 which will be consumed by `event-driven-function2`.
+   * Once the object Copy is successful you have to check the cloudwatch logs of `event-driven-
+     function2` to check whether the event is printed.
