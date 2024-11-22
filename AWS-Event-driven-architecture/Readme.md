@@ -19,3 +19,6 @@ The system performs the following tasks:
 4. Triggers Lambda functions for processing messages from the respective SQS queues.
 ## Steps to Build the Project
 ### Step 1 - Set Up the S3 Bucket
+* Create a S3 bucket with default settings.
+### Step 1 - Create a SNS Topic
+* Name the SNS topic as event-driven-project
