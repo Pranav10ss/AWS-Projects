@@ -10,6 +10,7 @@
    like performing some workflow or updating the database.
   
 ## Architecture
+![Diagram explaining the architecture of this project](Images/Architecture-diagram.png)
 
 ### Architecture Overview
 The system performs the following tasks:
@@ -20,5 +21,35 @@ The system performs the following tasks:
 ## Steps to Build the Project
 ### Step 1 - Set Up the S3 Bucket
 * Create a S3 bucket with default settings.
-### Step 1 - Create a SNS Topic
-* Name the SNS topic as event-driven-project
+### Step 2 - Create a SNS Topic
+* Name the SNS topic as `event-driven-project` and select the Type as `Standard`
+* Attach an **access policy** to allow S3 to send messages to SNS and to allow SQS to subscribe to SNS Topic. Under **access
+  policy**, choose the method as `Advanced` and paste the JSON policy.
+### Step 3 - Create SQS Queues
+* We need to create two queues. Name the first queue as `queue1` and second queue as `queue2`.
+* Select the queue type as `standard`.
+* Attach an **access policy** to allow SNS to send messages to SQS queue and to allow Lambda to access/receive the messages.
+  Under **access policy**, choose the method as `Advanced` and paste the JSON policy.
+* We need to point `queue1` to the first Lambda function i.e, `event-driven-function1` and `queue2` to the second Lambda
+  function i.e, `event-driven-function2`. So make sure that in the access policy of the queues you specify the respective 
+  Lambda function's name.
+### Step 4 - Create Lambda function
+* We need to create two Lambda functions. Before creating the Lambda functions we need to create an IAM role for bot the
+  functions.
+* Create two roles and attach the inline policy. Use `Lambda-policy.json` as the JSON code. This policy allows Lambda to 
+  access SQS queue and cloudwatchlogs.
+* In the access policy, mark `queue1` to the first Lambda function i.e, `event-driven-function1` and `queue2` to the second 
+  Lambda function i.e, `event-driven-function2`.
+* After creating the IAM roles, create the lambda functions `event-driven-function1` and `event-driven-function2` with
+  respective roles attached.
+* Below is the Lambda function code which is same for both the functions.
+```JSON
+  import json
+
+def lambda_handler(event, context):
+    print(json.dumps(event))
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
+```
