@@ -3,11 +3,10 @@
   The purpose of this project is to demonstrate an event-driven architecture using AWS services that leverage Amazon S3, SNS, SQS, and Lambda to build a decoupled, scalable, and resilient system. The project highlights the use of Amazon SQS for decoupling message producers and consumers, enabling asynchronous processing and high availability of event handling.
   This project uses events to decouple an application's components.
   This project mainly has four components:
-1. Event producers(S3) - These are the ones that causes the change in state and produces the event
-2. Event ingestion(SNS) - Its like an event router that filters and pushes the event to the next componenet
-3. Event stream(SQS) - Serve as buffers and ensure reliable, decoupled delivery of events to consumers
-4. Event consumers - Processes the events received from queues. These are the ones that actually take action on the events
-   like performing some workflow or updating the database.
+1. **Event producers(S3)** - These are the ones that causes the change in state and produces the event
+2. **Event ingestion(SNS)** - Its like an event router that filters and pushes the event to the next componenet
+3. **Event stream(SQS)** - Serve as buffers and ensure reliable, decoupled delivery of events to consumers
+4. **Event consumers(Lambda)** - Processes the events received from queues. These are the ones that actually take action on the events like performing some workflow or updating the database.
   
 ## Architecture
 ![Diagram explaining the architecture of this project](Images/event-driven.svg)
