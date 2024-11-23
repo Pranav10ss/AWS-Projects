@@ -98,7 +98,7 @@ The system performs the following tasks:
    * This time the SNS will filter it and push it to queue2 which will be consumed by `event-driven-function2`.
    * Once the object Copy is successful you have to check the cloudwatch logs of `event-driven-
      function2` to check whether the event is printed.
-## Conclusion
+## ✅Conclusion
 ### At the end of this project we achieve:
 1. **Event-Driven Design:**
 Automatic response to S3 events, with decoupled processing of events.
