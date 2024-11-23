@@ -22,8 +22,7 @@ In this project we will look at how to build capture stream data using lambda fu
 * Name the function and select the runtime as python.
 * Under **Change default execution role**, allow it to create a new IAM role for Lambda function to assume so that it can access the dynamoDB streams and to access CloudWatch logs.
 * You need to make some changes to the policy attaches to the IAM role. Add permissions by selecting the sevice as dynamoDB.
-  It rrequires four different actions. Those ase `GetRecords`,`
-GetShardIterator`,`DescribeStream`,`ListStreams`.
+  It rrequires four different actions. Those ase `GetRecords`,`GetShardIterator`,`DescribeStream`,`ListStreams`.
 * Also add the **dynamoDb stream ARN** to the policy. After that review the changes and save.
 * The code of the lambda function will be
 ```python
@@ -43,8 +42,7 @@ def lambda_handler(event, context):
 1. **INSERT** record event: Lets create an entry in the table. Add the Value as `Dan Brown` to **author** and `The DaVinci code` to **bookTitle**.
    If we go to lambda-> Monitor-> view CloudWatchlogs for the function, you should be able to see the event being printed.
    You can verify the `NewImage` event with the item details you created.
-2. **MODIFY** record event: Edit the existing record. Add a new attribute to the item. Add the attribute name as `subTitle`and value as
-   `Volume-1`.
+2. **MODIFY** record event: Edit the existing record. Add a new attribute to the item. Add the attribute name as `subTitle`and value as `Volume-1`.
    If you check the CW logs, you can verify the `MODIFY` event with `NewImage` and `OldImage`.
 3. **REMOVE** record event: Delete the item from the table. You can verify `REMOVE` event with `OldImage`
 ## ✅Conclusion
