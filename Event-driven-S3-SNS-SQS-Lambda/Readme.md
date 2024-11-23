@@ -88,7 +88,7 @@ The system performs the following tasks:
    * Go to SQS console, under **Lambda triggers** configure the `queue1` to `event-driven-function1` and `queue2` to `event-
      driven-function2`.
    * If you check the lambda function console you can see that the trigger will be set to SQS.
-## Testing
+## 🔎Testing
 1. **First event - Put object:**
    * Upload any file to the S3 bucket. Once the upload is successful you have to check the cloudwatch logs of `event-driven-
      function1` to check whether the event is printed.
