@@ -1,7 +1,6 @@
 # Using DynamoDB Streams with Lambda Triggers
 ## 📘Project Overview
-In this project we will look at how to build capture stream data using lambda functions. We can enable dynamoDB in any table and the moment you enable it, any application/user that INSERTS, MODIFIES or DELETES the data in the table
-, the modifications will be automatically streamed and this information will be available for 24H. The data is time-ordered and you can set what exactly needs to be streamed( Stream view types). We can Stream view types such as:
+In this project we will look at how to build capture stream data using lambda functions. We can enable dynamoDB in any table and the moment you enable it, any application/user that INSERTS, MODIFIES or DELETES the data in the table, the modifications will be automatically streamed and this information will be available for 24H. The data is time-ordered and you can set what exactly needs to be streamed( Stream view types). We can Stream view types such as:
   1. KEYS ONLY
   2. NEW IMAGE
   3. OLD IMAGE
