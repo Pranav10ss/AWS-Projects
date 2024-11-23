@@ -10,7 +10,7 @@
    like performing some workflow or updating the database.
   
 ## Architecture
-![Diagram explaining the architecture of this project](Images/Architecture-diagram.png)
+![Diagram explaining the architecture of this project](Images/event-driven.svg)
 
 ### Architecture Overview
 The system performs the following tasks:
