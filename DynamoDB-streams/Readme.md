@@ -20,9 +20,9 @@ In this project we will look at how to capture DynamoDB stream data using a lamb
 * Once the stream is enabled you can add a trigger to invoke a lambda function
 ### Step 3 - Create a Lambda function
 * Name the function and select the runtime as python.
-* Under **Change default execution role**, allow it to create a new IAM role for Lambda function to assume so that it can access the dynamoDB streams and to access CloudWatch logs.
-* You need to make some changes to the policy attaches to the IAM role. Add permissions by selecting the sevice as dynamoDB.
-  It rrequires four different actions. Those ase `GetRecords`,`GetShardIterator`,`DescribeStream`,`ListStreams`.
+* Under **Change default execution role**, allow it to create a new IAM role for Lambda function to assume so that it can access the dynamoDB streams and CloudWatch logs.
+* You need to make some changes to the policy attached to the IAM role. Add permissions by selecting the sevice as dynamoDB.
+  It requires four different actions. Those ase `GetRecords`,`GetShardIterator`,`DescribeStream`,`ListStreams`.
 * Also add the **dynamoDb stream ARN** to the policy. After that review the changes and save.
 * The code of the lambda function will be
 ```python
@@ -35,7 +35,7 @@ def lambda_handler(event, context):
         'body': json.dumps('Hello from Lambda!')
     }
 ```
-### Step 4 - Create a trigger to invoke Lamda function
+### Step 4 - Create a trigger to invoke the Lambda function
 * Under tables's **exports and streams** section you'll find an option to create a trigger.
 * Select the Lambda function that you created. Select the **batch size** as `1`. Batch size how long dynamoDb has to wait before it streams the data into the lambda function. By setting `1`, for every single change in the table, your lambda function will get invoked. If the **batch size** is set to `10`, for every 10 changes in the table, your lambda function will get invoked.
 ## 🔎Testing
