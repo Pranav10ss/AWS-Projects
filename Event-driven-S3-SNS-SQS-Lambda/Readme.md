@@ -1,5 +1,5 @@
 # AWS Event-Driven Architecture
-## Purpose of the Project
+## 📌Purpose of the Project
   The purpose of this project is to demonstrate an event-driven architecture using AWS services that leverage Amazon S3, SNS, SQS, and Lambda to build a decoupled, scalable, and resilient system. The project highlights the use of Amazon SQS for decoupling message producers and consumers, enabling asynchronous processing and high availability of event handling.
   This project uses events to decouple an application's components.
   This project mainly has four components:
