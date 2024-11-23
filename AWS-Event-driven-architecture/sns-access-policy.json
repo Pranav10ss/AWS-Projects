@@ -9,13 +9,13 @@
         "Service": "s3.amazonaws.com"
       },
       "Action": "SNS:Publish",
-      "Resource": "arn:aws:sns:<region>:<accountId>:<snsTopicName>",
+      "Resource": "arn:aws:sns:us-east-1:963611518741:event-driven-project",
       "Condition": {
         "StringEquals": {
-          "aws:SourceAccount": "<accountId>"
+          "aws:SourceAccount": "963611518741"
         },
         "ArnLike": {
-          "aws:SourceArn": "arn:aws:s3:*:*:<s3BucketName>"
+          "aws:SourceArn": "arn:aws:s3:::event-driven-project"
         }
       }
     },
@@ -26,12 +26,12 @@
         "Service": "sqs.amazonaws.com"
       },
       "Action": "sns:Subscribe",
-      "Resource": "arn:aws:sns:<region>:<accountId>:<snsTopicName>",
+      "Resource": "arn:aws:sns:us-east-1:963611518741:event-driven-project",
       "Condition": {
         "ArnEquals": {
           "aws:SourceArn": [
-            "arn:aws:sqs:<region>:<accountId>:<sqsQueueName>",
-            "arn:aws:sqs:<region>:<accountId>:<sqsQueueName>"
+            "arn:aws:sqs:us-east-1:963611518741:queue1",
+            "arn:aws:sqs:us-east-1:963611518741:queue2"
           ]
         }
       }
