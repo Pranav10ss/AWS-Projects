@@ -5,7 +5,7 @@ In this project we will look at how to build capture stream data using lambda fu
   2. NEW IMAGE
   3. OLD IMAGE
   4. NEW AND OLD IMAGES
-You can attach a lambda function to the stream. Push will be invoked synchronously and you can do whatever post processing you want to do with this lambda function.
+* You can attach a lambda function to the stream. Push will be invoked synchronously and you can do whatever post processing you want to do with this lambda function.
 ## Architecture
 ![Diagram explaining the architecture of this project](Images/Architecture-diagram.svg)
 ## Steps to build this project
