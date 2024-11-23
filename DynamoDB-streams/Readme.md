@@ -41,13 +41,13 @@ def lambda_handler(event, context):
 * Under tables's **exports and streams** section you'll find an option to create a trigger.
 * Select the Lambda function that you created. Select the **batch size** as `1`. Batch size how long dynamoDb has to wait before it streams the data into the lambda function. By setting `1`, for every single change in the table, your lambda function will get invoked. If the **batch size** is set to `10`, for every 10 changes in the table, your lambda function will get invoked.
 ## Testing
-1. `INSERT` record event: Lets create an entry in the table. Add the Value as `Dan Brown` to **author** and `The DaVinci code` to **bookTitle**.
+1. **INSERT** record event: Lets create an entry in the table. Add the Value as `Dan Brown` to **author** and `The DaVinci code` to **bookTitle**.
    If we go to lambda-> Monitor-> view CloudWatchlogs for the function, you should be able to see the event being printed.
    You can verify the `NewImage` event with the item details you created.
-2. `MODIFY` record event: Edit the existing record. Add a new attribute to the item. Add the attribute name as `subTitle`and value as
+2. **MODIFY** record event: Edit the existing record. Add a new attribute to the item. Add the attribute name as `subTitle`and value as
    `Volume-1`.
    If you check the CW logs, you can verify the `MODIFY` event with `NewImage` and `OldImage`.
-3. `REMOVE` record event: Delete the item from the table. You can verify `REMOVE` event with `OldImage`
+3. **REMOVE** record event: Delete the item from the table. You can verify `REMOVE` event with `OldImage`
 ## ✅Conclusion
 At the end of this project we achieve the following:
    1. **Event-Driven Architecture**: Real-time processing of DynamoDB changes using Lambda.
