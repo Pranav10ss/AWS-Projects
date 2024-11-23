@@ -99,3 +99,15 @@ The system performs the following tasks:
    * This time the SNS will filter it and push it to queue2 which will be consumed by `event-driven-function2`.
    * Once the object Copy is successful you have to check the cloudwatch logs of `event-driven-
      function2` to check whether the event is printed.
+## Conclusion
+### At the end of this project we achieve:
+1. **Event-Driven Design:**
+Automatic response to S3 events, with decoupled processing of events.
+2. **Scalable Processing:**
+Independent scaling for the message producer (S3) and consumers (Lambda functions).
+3. **Asynchronous Workflows:**
+Uses SQS to handle high volumes of messages without overwhelming the processing functions.
+4. **Resilient Architecture:**
+Ensures message durability and retries using SQS. Enables error handling and redelivery in case of failures.
+5. **Separation of Concerns:**
+Clear segregation of event types with filter policies, ensuring clean routing and targeted processing.
