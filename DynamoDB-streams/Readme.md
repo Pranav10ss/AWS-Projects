@@ -1,6 +1,6 @@
 # Using DynamoDB Streams with Lambda Triggers
 ## 📘Project Overview
-In this project we will look at how to build capture stream data using lambda functions. We can enable dynamoDB in any table and the moment you enable it, any application/user that INSERTS, MODIFIES or DELETES the data in the table, the modifications will be automatically streamed and this information will be available for 24H. The data is time-ordered and you can set what exactly needs to be streamed( Stream view types). We can Stream view types such as:
+In this project we will look at how to capture DynamoDB stream data using a lambda function. We can enable dynamoDB stream in any table and the moment you enable it, any application/user that INSERTS, MODIFIES or DELETES the data in the table, the modifications will be automatically streamed and this information will be available for 24H. The data is time-ordered and you can set what exactly needs to be streamed( Stream view types). We can set Stream view types such as:
   1. KEYS ONLY
   2. NEW IMAGE
   3. OLD IMAGE
@@ -35,7 +35,7 @@ def lambda_handler(event, context):
         'body': json.dumps('Hello from Lambda!')
     }
 ```
-### Step 3 - Create a trigger to invoke Lamda function
+### Step 4 - Create a trigger to invoke Lamda function
 * Under tables's **exports and streams** section you'll find an option to create a trigger.
 * Select the Lambda function that you created. Select the **batch size** as `1`. Batch size how long dynamoDb has to wait before it streams the data into the lambda function. By setting `1`, for every single change in the table, your lambda function will get invoked. If the **batch size** is set to `10`, for every 10 changes in the table, your lambda function will get invoked.
 ## 🔎Testing
