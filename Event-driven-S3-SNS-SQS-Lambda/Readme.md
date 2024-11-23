@@ -4,14 +4,15 @@
   This project uses events to decouple an application's components.
   This project mainly has four components:
 1. **Event producers(S3)** - These are the ones that causes the change in state and produces the event
-2. **Event ingestion(SNS)** - Its like an event router that filters and pushes the event to the next componenet
-3. **Event stream(SQS)** - Serve as buffers and ensure reliable, decoupled delivery of events to consumers
-4. **Event consumers(Lambda)** - Processes the events received from queues. These are the ones that actually take action on the events like performing some workflow or updating the database.
+2. **Event ingestion(SNS)** - Its like an event router that filters and pushes the event to the next component
+3. **Event stream(SQS)** - Serves as buffer and ensure reliable, decoupled delivery of events to consumers
+4. **Event consumers(Lambda)** - Processes the events received from queues. These are the ones that actually take action on
+   the events like performing some workflow or updating the database.
   
 ## Architecture
 ![Diagram explaining the architecture of this project](Images/event-driven.svg)
 
-### Architecture Overview
+### Architecture Overview:
 The system performs the following tasks:
 1. Detects specific events on an S3 bucket.
 2. Publishes notifications about these events to an SNS topic.
@@ -33,7 +34,7 @@ The system performs the following tasks:
   function i.e, `event-driven-function2`. So make sure that in the access policy of the queues you specify the respective 
   Lambda function's name.
 ### Step 4 - Create Lambda function
-* We need to create two Lambda functions. Before creating the Lambda functions we need to create an IAM role for bot the
+* We need to create two Lambda functions. Before creating the Lambda functions we need to create an IAM role for both the
   functions.
 * Create two roles and attach the inline policy. Use `Lambda-policy.json` as the JSON code. This policy allows Lambda to 
   access SQS queue and cloudwatchlogs.
