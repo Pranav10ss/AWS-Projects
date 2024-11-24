@@ -1,1 +1,13 @@
-
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::963611518741:role/Lambda-24"
+      },
+      "Action": "es:ESHttp*",
+      "Resource": "arn:aws:es:us-east-1:963611518741:domain/project-domain/*"
+    }
+  ]
+}
