@@ -1,6 +1,6 @@
 # Stream AWS DynamoDB data to AWS OpenSearch Index using DynamoDB Lambda Triggers
 ## 📘 Introduction
-
+In this project we will enable a dynamoDB stream and attach a lambda trigger to it, which then writes the data to opensearch domain. We will create Proxy API using API gateway and integrate it with the same lambda function. The lambda function will process incoming HTTP requests from API gateway and interact with the Opensearch domain.
 ## Architecture
 ![Diagram explaining the architecture of this project](Images/Architecture-diagram.png)
 
@@ -45,8 +45,27 @@
   (**NOTE**: If you select 2 AZs,  the OpenSearch domain will distribute its nodes(replica and primary) across two Availability Zones (`us-east-1a` and `us-east-1b`).
 * Choose the number of nodes as 1.
 * Under **Network** configuration, choose the VPC. Select the `private2-us-east-1b` subnet and select the security group that you created for the opensearch.
-## Step 2 - Create a Lambda function
-* Before creating a lambda function, create a lambda execution role. Attch the JSON policy.
+* Once the domain is created, under **security configuration** add an `access policy` so that the lambda function's role can access the opensearch domain.
+## Step 3 - Create a Lambda function
+* Before creating a lambda function, create a lambda execution role. Attch the JSON policy. This allows the lambda function to access opensearch index, write the logs to cloudwatch, execute API gateway request and permission to dynamoDB stream.
+* Next, Create a lambda function, select the runtime as python 3.8, attach the execution role that you created in the last step.
+* Under Advanced settings, choose the VPC, `private1-us-east-1a` subnet and the security group associated with lambda.
+* Upload the Lambda function code once the function is created. The Lambda function will process incoming HTTP request from the API gateway and interact with the opensearch domain. The Lambda function code also proesses DynamoDB streams and send the data to opensearch.
+* Go to **Configuration**->  **general configuration** -> Update the timeout from 3 sec(default) to 1 minute because there will be multiple API calls happening to opensearch domain.
+## Step 4 - Create a API gateway
+* Create a REST API.
+* Create a resource within the API gateway. This resource will redirect your request to the lambda. Enter the Resource name as `{proxy+}` so that all the request will be redirected to the single lambda.
+* Create a method. Select the method as `ANY`. And select the lambda function that you have created. Now this integration will add the permission to invoke the lambda function.
+* Deploy the API to a new stage called `dev`. Once deployed you'll get a API gateway invoke URL.
+## Step 5 - Add Environment variables to Lambda function
+* Under **configuration**, click on edit environment variables. Add the following variables.
+ 1. Add `HOST` as *Key* and under *value*, add the opensearch domain endpoint.
+ 2. Add `API_STAGE' as *Key* and under *Value* add `dev`.
+## Testing
+1. Try accesing the Opensearch domain through API gateway endpoint and you'll be able to see opensearch dashboard. The following is the URL to access opensearch dashboard. 
+`https://<host>/<api-stage-name>/_dashboards/app/dev_tools#/console`
+Replace `https://<host>/<api-stage-name>` with your `API invoke URL`.
+2. Once you open the opensearch domain you get to see the default index. Create a new index. You can get an example index from *opensearch documentation*. You can find example index by searching **Create index** in the search bar.
 
 ## ✅ Conclusion
 
