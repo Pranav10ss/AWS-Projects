@@ -116,9 +116,9 @@ PUT /books
   }
 }
 ```
-3. **INSERT item**: Lets create an entry in the table. Add the Value as 'Dan Brown' to *author* and 'The DaVinci code' to *bookTitle*. If we go to OpenSearch dashboard you should be able to see the item/data that you created. You can verify the New data the item details you created.
-   **MODIFY item**: Edit the existing record. Add a new attribute to the item. Add the attribute name as *subTitle* and *value* as 'Volume-1'. If you check the Opensearch dashboard, you can verify the modified item.
-   **REMOVE item**: Delete the item from the table. You can verify opensearch dashboard to see that the item is deleted or not.
+3. * **INSERT item**: Lets create an entry in the table. Add the Value as 'Dan Brown' to *author* and 'The DaVinci code' to *bookTitle*. If we go to OpenSearch dashboard you should be able to see the item/data that you created. You can verify the New data the item details you created.
+   * **MODIFY item**: Edit the existing record. Add a new attribute to the item. Add the attribute name as *subTitle* and *value* as 'Volume-1'. If you check the Opensearch dashboard, you can verify the modified item.
+   * **REMOVE item**: Delete the item from the table. You can verify opensearch dashboard to see that the item is deleted or not.
 ## ✅ Conclusion
 This project demonstrates a scalable, serverless architecture for real-time data streaming and indexing. By leveraging AWS services such as DynamoDB, Lambda, and OpenSearch, it provides a cost-effective solution for integrating NoSQL data with full-text search and analytics capabilities.
  
