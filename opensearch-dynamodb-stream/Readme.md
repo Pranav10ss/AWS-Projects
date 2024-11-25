@@ -45,6 +45,9 @@
   (**NOTE**: If you select 2 AZs,  the OpenSearch domain will distribute its nodes(replica and primary) across two Availability Zones (`us-east-1a` and `us-east-1b`).
 * Choose the number of nodes as 1.
 * Under **Network** configuration, choose the VPC. Select the `private2-us-east-1b` subnet and select the security group that you created for the opensearch.
+## Step 2 - Create a Lambda function
+* Before creating a lambda function, create a lambda execution role. Attch the JSON policy.
+
 ## ✅ Conclusion
 
  
