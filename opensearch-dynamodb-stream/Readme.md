@@ -1,6 +1,7 @@
 # Stream AWS DynamoDB data to AWS OpenSearch Index using DynamoDB Lambda Triggers
 ## 📘 Introduction
-In this project we will enable a dynamoDB stream and attach a lambda trigger to it, which then writes the data to opensearch domain. We will create Proxy API using API gateway and integrate it with the same lambda function. The lambda function will process incoming HTTP requests from API gateway and interact with the Opensearch domain.
+   The purpose of this project is to create a real-time data pipeline that streams data from an Amazon DynamoDB table to an Amazon OpenSearch domain. This allows you to efficiently index and search data stored in DynamoDB for analytical and operational use cases, such as Log analytics, Full-text search on DynamoDB data, Dashboards and visualizations using OpenSearch Dashboards.
+   In this project we will enable a dynamoDB stream and attach a lambda trigger to it, which processes the DDB streams and then sends the data to opensearch domain for indexing. We will create Proxy API using API gateway and integrate it with the same lambda function. The lambda function will process incoming HTTP requests from API gateway and interact with the Opensearch domain.
 ## Architecture
 ![Diagram explaining the architecture of this project](Images/Architecture-diagram.svg)
 
