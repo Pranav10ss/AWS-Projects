@@ -2,7 +2,7 @@
 ## 📘 Introduction
 In this project we will enable a dynamoDB stream and attach a lambda trigger to it, which then writes the data to opensearch domain. We will create Proxy API using API gateway and integrate it with the same lambda function. The lambda function will process incoming HTTP requests from API gateway and interact with the Opensearch domain.
 ## Architecture
-![Diagram explaining the architecture of this project](Images/Architecture-diagram.png)
+![Diagram explaining the architecture of this project](Images/Architecture-diagram.svg)
 
 ## Step 1 - Create a VPC
 * Go to AWS Console->VPC-> Configure two AZs in `us-east-1`. The AZs will be `us-east-1a` and `us-east-1b`.
@@ -57,11 +57,24 @@ In this project we will enable a dynamoDB stream and attach a lambda trigger to 
 * Create a resource within the API gateway. This resource will redirect your request to the lambda. Enter the Resource name as `{proxy+}` so that all the request will be redirected to the single lambda.
 * Create a method. Select the method as `ANY`. And select the lambda function that you have created. Now this integration will add the permission to invoke the lambda function.
 * Deploy the API to a new stage called `dev`. Once deployed you'll get a API gateway invoke URL.
-## Step 5 - Add Environment variables to Lambda function
+## Step 5 - Configure DynamoDB Streams
+### Create a dynamoDB table
+* Enter the table name as `books`, Partition key as `author`, Sort key as `bookTitle`
+* Under tables's capacity settings, choose `On-demand mode`.
+### Configure DynamoDB streams
+* Under tables's exports and streams section you'll find an option to enable DynamoDB streams
+* You have to select the view type. View type is the data that will be sent to your streams. Select New and old images.
+### Create a trigger to invoke the Lambda function
+* Under tables's exports and streams section you'll find an option to create a trigger.
+* Select the Lambda function that you created. Select the batch size as 1. Batch size is how long dynamoDb has to wait before it streams the data into the lambda function. By setting 1, for every single change in the table, your lambda function will get invoked. If the batch size is set to 10, for every 10 changes in the table, your lambda function will get invoked.
+## Step 6 - Add Environment variables to Lambda function
 * Under **configuration**, click on edit environment variables. Add the following variables.
  1. Add `HOST` as *Key* and under *value*, add the opensearch domain endpoint.
  2. Add `API_STAGE' as *Key* and under *Value* add `dev`.
-## Testing
+ 3. Add `ES_INDEX` as *key* and under *Value* add `books`.
+ 4. Add `DB_HASH_KEY` as *Key* and under *Value* add `author`.
+ 5. Add `DB_SORT_KEY` as *Key* and under *Value* add `bookTitle`.
+## 🔎Testing
 1. Try accesing the Opensearch domain through API gateway endpoint and you'll be able to see opensearch dashboard. The following is the URL to access opensearch dashboard. 
 `https://<host>/<api-stage-name>/_dashboards/app/dev_tools#/console`
 Replace `https://<host>/<api-stage-name>` with your `API invoke URL`.
@@ -103,7 +116,10 @@ PUT /books
   }
 }
 ```
+3. **INSERT item**: Lets create an entry in the table. Add the Value as 'Dan Brown' to *author* and 'The DaVinci code' to *bookTitle*. If we go to OpenSearch dashboard you should be able to see the item/data that you created. You can verify the New data the item details you created.
+   **MODIFY item**: Edit the existing record. Add a new attribute to the item. Add the attribute name as *subTitle* and *value* as 'Volume-1'. If you check the Opensearch dashboard, you can verify the modified item.
+   **REMOVE item**: Delete the item from the table. You can verify opensearch dashboard to see that the item is deleted or not.
 ## ✅ Conclusion
-
+This project demonstrates a scalable, serverless architecture for real-time data streaming and indexing. By leveraging AWS services such as DynamoDB, Lambda, and OpenSearch, it provides a cost-effective solution for integrating NoSQL data with full-text search and analytics capabilities.
  
 
