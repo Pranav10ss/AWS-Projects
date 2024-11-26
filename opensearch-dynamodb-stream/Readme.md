@@ -45,7 +45,7 @@
 ## Step 2 - Create an Opensearch domain
 * Go to opensearch domain-> Give a domain name-> Select the **Deployment type** as `Development and testing`.
 * Select the `latest version` of opensearch.
-* Select the number of Availability zones as 1. AWS is place opensearch's node(primary node) across 1AZ.
+* Select the number of Availability zones as `1`. AWS places opensearch's node(primary node) in only one AZ.
   (**NOTE**: If you select 2 AZs,  the OpenSearch domain will distribute its nodes(replica and primary) across two Availability Zones (`us-east-1a` and `us-east-1b`).
 * Choose the number of nodes as 1.
 * Under **Network** configuration, choose the VPC. Select the `private2-us-east-1b` subnet and select the security group that you created for the opensearch.
