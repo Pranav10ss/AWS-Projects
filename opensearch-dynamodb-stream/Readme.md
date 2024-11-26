@@ -10,9 +10,12 @@
 * Create two private subnets and two public subnets.
 * Attach a NAT gateway to one of the AZ.
 * The VPC structure will be as follows:
-            **us-east-1a**                                   **us-east-1b**
-          `private1-us-east-1a`:Lambda                   `private2-us-east-1b`: Opensearch
-          `public1-us-east-1a` :NAT Gateway              `public2-us-east-1b`: Empty (for redundancy if needed later)
+  1. **us-east-1a**                                  
+    * `private1-us-east-1a`:Lambda         
+    * `public1-us-east-1a` :NAT Gateway              
+  2. **us-east-1b**
+    * `private2-us-east-1b`: Opensearch
+    * `public2-us-east-1b`: Empty (for redundancy if needed later)
 * Internet gateway will be attached to the VPC, Route tables will be created for subnets and an elastic IP will be attached to the NAT gateway(NAT Gateway requires an Elastic IP to provide outbound internet access for the Lambda function in the `private1-us-east-1a` subnet) by default. Make sure all these are created once the VPC is configured.
 * The NAT Gateway in `public1-us-east-1a` relies on the Internet Gateway to provide internet access.
 ### Subnet Configuration(Route table):
