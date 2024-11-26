@@ -20,10 +20,10 @@
 * The NAT Gateway in `public1-us-east-1a` relies on the Internet Gateway to provide internet access.
 ### Subnet Configuration(Route table):
   1. **Lambda's Subnet (private1-us-east-1a):**
-* Destination : `0.0.0.0/0`
-* Target : NAT Gateway in `public1-us-east-1a`
+    * Destination : `0.0.0.0/0`
+    * Target : NAT Gateway in `public1-us-east-1a`
   2. **OpenSearch's Subnet (private2-us-east-1b):**
-* No direct route to the internet is needed, as OpenSearch does not require outbound internet access.OpenSearch communicates directly with Lambda using private IPs.
+    * No direct route to the internet is needed, as OpenSearch does not require outbound internet access. OpenSearch communicates directly with Lambda using private IPs.
 ### Security Group Configuration:
 **Lambda's Security Group:**(To allow outbound HTTPS access)
 * Select VPC that you created.
