@@ -67,7 +67,7 @@
 * Under tables's capacity settings, choose `On-demand mode`.
 ### Configure DynamoDB streams
 * Under tables's exports and streams section you'll find an option to enable DynamoDB streams
-* You have to select the view type. View type is the data that will be sent to your streams. Select New and old images.
+* You have to select the view type. View type is the data that will be sent to your streams. Select `New and old images`.
 ### Create a trigger to invoke the Lambda function
 * Under tables's exports and streams section you'll find an option to create a trigger.
 * Select the Lambda function that you created. Select the batch size as 1. Batch size is how long dynamoDb has to wait before it streams the data into the lambda function. By setting 1, for every single change in the table, your lambda function will get invoked. If the batch size is set to 10, for every 10 changes in the table, your lambda function will get invoked.
