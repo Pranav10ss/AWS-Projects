@@ -51,7 +51,7 @@
 * Under **Network** configuration, choose the VPC. Select the `private2-us-east-1b` subnet and select the security group that you created for the opensearch.
 * Once the domain is created, under **security configuration** add an `access policy` so that the lambda function's role can access the opensearch domain.
 ## Step 3 - Create a Lambda function
-* Before creating a lambda function, create a lambda execution role. Attch the JSON policy. This allows the lambda function to access opensearch index, write the logs to cloudwatch, execute API gateway request and permission to dynamoDB stream.
+* Before creating a lambda function, create a lambda execution role. Attch the JSON policy. This allows the lambda function to access opensearch index, write the logs to cloudwatch, execute API gateway request and to interact with dynamoDB stream.
 * Next, Create a lambda function, select the runtime as python 3.8, attach the execution role that you created in the last step.
 * Under Advanced settings, choose the VPC, `private1-us-east-1a` subnet and the security group associated with lambda.
 * Upload the Lambda function code once the function is created. The Lambda function will process incoming HTTP request from the API gateway and interact with the opensearch domain. The Lambda function code also proesses DynamoDB streams and send the data to opensearch.
