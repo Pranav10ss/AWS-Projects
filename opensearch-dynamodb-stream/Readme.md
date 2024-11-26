@@ -19,10 +19,10 @@
 * Internet gateway will be attached to the VPC, Route tables will be created for subnets and an elastic IP will be attached to the NAT gateway(NAT Gateway requires an Elastic IP to provide outbound internet access for the Lambda function in the `private1-us-east-1a` subnet). Make sure all these are created once the VPC is configured.
 * The NAT Gateway in `public1-us-east-1a` relies on the Internet Gateway to provide internet access.
 ### Subnet Configuration(Route table):
-**Lambda's Subnet (private1-us-east-1a):**
+  1. **Lambda's Subnet (private1-us-east-1a):**
 * Destination : `0.0.0.0/0`
 * Target : NAT Gateway in `public1-us-east-1a`
-**OpenSearch's Subnet (private2-us-east-1b):**
+  2. **OpenSearch's Subnet (private2-us-east-1b):**
 * No direct route to the internet is needed, as OpenSearch does not require outbound internet access.OpenSearch communicates directly with Lambda using private IPs.
 ### Security Group Configuration:
 **Lambda's Security Group:**(To allow outbound HTTPS access)
