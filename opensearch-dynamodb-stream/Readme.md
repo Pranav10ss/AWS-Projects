@@ -104,7 +104,7 @@ PUT /books
   }
 }
 ```
-3. * **INSERT item**: Lets create an entry in the table. Add the Value as 'Dan Brown' to *author* and 'The DaVinci code' to *bookTitle*. If we go to OpenSearch dashboard you should be able to see the item/data that you created. You can verify the New data the item details you created.
+3. * **INSERT item**: Lets create an entry in the table. Add the Value as 'Dan Brown' to *author* and 'The DaVinci code' to *bookTitle*. If we go to OpenSearch dashboard you should be able to see the item/data that you created. This way you can verify the new item details you created.
    * **MODIFY item**: Edit the existing record. Add a new attribute to the item. Add the attribute name as *subTitle* and *value* as 'Volume-1'. If you check the Opensearch dashboard, you can verify the modified item.
    * **REMOVE item**: Delete an item from the table. You can verify opensearch dashboard to see that the item is deleted or not.
 ## ✅ Conclusion
