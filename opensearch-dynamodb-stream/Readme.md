@@ -16,7 +16,7 @@
   2. **us-east-1b**
     * `private2-us-east-1b`: Opensearch
     * `public2-us-east-1b`: Empty (for redundancy if needed later)
-* Internet gateway will be attached to the VPC, Route tables will be created for subnets and an elastic IP will be attached to the NAT gateway(NAT Gateway requires an Elastic IP to provide outbound internet access for the Lambda function in the `private1-us-east-1a` subnet) by default. Make sure all these are created once the VPC is configured.
+* Internet gateway will be attached to the VPC, Route tables will be created for subnets and an elastic IP will be attached to the NAT gateway(NAT Gateway requires an Elastic IP to provide outbound internet access for the Lambda function in the `private1-us-east-1a` subnet). Make sure all these are created once the VPC is configured.
 * The NAT Gateway in `public1-us-east-1a` relies on the Internet Gateway to provide internet access.
 ### Subnet Configuration(Route table):
 **Lambda's Subnet (private1-us-east-1a):**
