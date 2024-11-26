@@ -7,23 +7,12 @@
 
 ## Step 1 - Create a VPC
 * Go to AWS Console->VPC-> Configure two AZs in `us-east-1`. The AZs will be `us-east-1a` and `us-east-1b`.
-* Create two private subnets and two public subnets.
-* Attach a NAT gateway to one of the AZ.
+* Create two private subnets , one in each AZ.
 * The VPC structure will be as follows:
   1. **us-east-1a**                                  
-    * `private1-us-east-1a`:Lambda         
-    * `public1-us-east-1a` :NAT Gateway              
+    * `private1-us-east-1a`:Lambda                      
   2. **us-east-1b**
     * `private2-us-east-1b`: Opensearch
-    * `public2-us-east-1b`: Empty (for redundancy if needed later)
-* Internet gateway will be attached to the VPC, Route tables will be created for subnets and an elastic IP will be attached to the NAT gateway(NAT Gateway requires an Elastic IP to provide outbound internet access for the Lambda function in the `private1-us-east-1a` subnet). Make sure all these are created once the VPC is configured.
-* The NAT Gateway in `public1-us-east-1a` relies on the Internet Gateway to provide internet access.
-### Subnet Configuration(Route table):
-1. **Lambda's Subnet (private1-us-east-1a):**
-      * Destination : `0.0.0.0/0`
-      * Target : NAT Gateway in `public1-us-east-1a`
-2. **OpenSearch's Subnet (private2-us-east-1b):**
-      * No direct route to the internet is needed, as OpenSearch does not require outbound internet access. OpenSearch communicates directly with Lambda using private IPs.
 ### Security Group Configuration:
 1. **Lambda's Security Group:**(To allow outbound HTTPS access)
       * Select VPC that you created.
@@ -35,13 +24,8 @@
 ### VPC Workflow
 1. Lambda in `private1-us-east-1a`:
    * Sends outbound HTTPS requests to OpenSearch in `private2-us-east-1b` via private IP.
-   * Uses NAT Gateway in `public1-us-east-1a` for internet access.
 2. OpenSearch in `private1-us-east-1b`:
    * Accepts HTTPS traffic from Lambda (restricted by security group).
-3. NAT Gateway:
-   * Provides Lambda with outbound internet connectivity (e.g., for AWS APIs, DynamoDB, etc.).
-4. Internet Gateway:
-   * Required for the NAT Gateway to provide internet access.
 ## Step 2 - Create an Opensearch domain
 * Go to opensearch domain-> Give a domain name-> Select the **Deployment type** as `Development and testing`.
 * Select the `latest version` of opensearch.
@@ -74,7 +58,7 @@
 ## Step 6 - Add Environment variables to Lambda function
 * Under **configuration**, click on edit environment variables. Add the following variables.
  1. Add `HOST` as *Key* and under *value*, add the opensearch domain endpoint.
- 2. Add `API_STAGE' as *Key* and under *Value* add `dev`.
+ 2. Add `API_STAGE` as *Key* and *Value* as `dev`.
  3. Add `ES_INDEX` as *key* and under *Value* add `books`.
  4. Add `DB_HASH_KEY` as *Key* and under *Value* add `author`.
  5. Add `DB_SORT_KEY` as *Key* and under *Value* add `bookTitle`.
