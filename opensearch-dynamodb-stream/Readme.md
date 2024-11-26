@@ -64,10 +64,10 @@
  5. Add `DB_SORT_KEY` as *Key* and under *Value* add `bookTitle`.
 ## 🔎Testing
 1. Try accesing the Opensearch domain through API gateway endpoint and you'll be able to see opensearch dashboard. The following is the URL to access opensearch dashboard. 
-`https://<host>/<api-stage-name>/_dashboards/app/dev_tools#/console`
+`https://<host>/<api-stage-name>/_dashboards/app/dev_tools#/console`. 
 Replace `https://<host>/<api-stage-name>` with your `API invoke URL`.
-2. Once you open the opensearch domain you`ll get to see the default index. Create a new index. You can get an example index from *opensearch documentation*. You can find example index by searching `**Create index**` in the search bar.
-Paste the index in the opensearch domain console.
+2. Once you open the opensearch domain you'll get to see the default index. Create a new index. You can get an example index from *opensearch documentation*. You can find example index by searching `**Create index**` in the search bar.
+* Paste the index in the opensearch domain console.
    Change the *index* name as `books`(Name of the dynamoDB table).
    In *Mappings*, add the dynamoDB table attributes. In our case its `bookTitle` and `author`. Give your index an alias name.
    Once all the changes are done you can run the command and that will create your first index. Below is the sample template.
