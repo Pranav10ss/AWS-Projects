@@ -25,13 +25,13 @@
 2. **OpenSearch's Subnet (private2-us-east-1b):**
       * No direct route to the internet is needed, as OpenSearch does not require outbound internet access. OpenSearch communicates directly with Lambda using private IPs.
 ### Security Group Configuration:
-**Lambda's Security Group:**(To allow outbound HTTPS access)
-* Select VPC that you created.
-* Under Outbound rule, Select the type as `HTTPS` and select the destination as `Anywhere IPv4`.
-* Inbound Rules Are Not Needed for Lambda because, Lambda is invoked by AWS internally (e.g., API Gateway or DynamoDB Streams), so no direct inbound traffic from the network is required.
-**OpenSearch's Security Group:**
-* Select the VPC that you created. 
-* Inbound Rule: Allow HTTPS (port 443) from Lambda’s Security Group. This ensures that only Lambda can communicate with OpenSearch securely.
+1. **Lambda's Security Group:**(To allow outbound HTTPS access)
+      * Select VPC that you created.
+      * Under Outbound rule, Select the type as `HTTPS` and select the destination as `Anywhere IPv4`.
+      * Inbound Rules Are Not Needed for Lambda because, Lambda is invoked by AWS internally (e.g., API Gateway or DynamoDB Streams), so no direct inbound traffic from the network is required.
+2. **OpenSearch's Security Group:**
+      * Select the VPC that you created. 
+      * Inbound Rule: Allow HTTPS (port 443) from Lambda’s Security Group. This ensures that only Lambda can communicate with OpenSearch securely.
 ### VPC Workflow
 1. Lambda in `private1-us-east-1a`:
    * Sends outbound HTTPS requests to OpenSearch in `private2-us-east-1b` via private IP.
