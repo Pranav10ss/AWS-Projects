@@ -14,7 +14,7 @@ Amazon CloudFront is used for CDN (Content Delivery Network) to enhance website 
 * Go to `AWS Console`->`Route 53`->`Register domain`. Type the domain that you want, it has to be unique. Check the availability and buy the domain. AWS will automatically create hosted zones for you for the domain that you bought. It will create two records for the doamin, NS(Name server) record and SOA(Start of Authority) record.
 ## Stage 2 - Create a S3 bucket 
 * Go to S3 console and create a bucket. The bucket name does *not* need to match custom domain name since you're using CF as a CDN infront of your S3 bucket.
-* Disable `block all public access` to allow public internet to access the files in the bucket. You can also 'Tag your resources'. This tags will be used to filter in your `Cost and Usage report` for `Access control` and other settings. Then Click on `Create bucket`.
+* You can 'Tag your resources'. This tags will be used to filter in your `Cost and Usage report` for `Access control` and other settings. Then Click on `Create bucket`.
 * Upload the HTML and CSS files to the bucket.
 * Go to `Properties`->`Static Website hosting`->Then 'Enable' static website hosting. Specify the name of the index file and the error document.  click on `Save Changes`.
 * Go to `Permissions`->`Bucket policy` and edit the bucket policy for the public internet to access the S3 bucket. ARN to be mentioned in the bucket policy will be the ARN of the S3 bucket. The sample of bucket policy is as follows:
