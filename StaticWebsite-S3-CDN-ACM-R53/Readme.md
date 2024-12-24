@@ -20,16 +20,22 @@ Amazon CloudFront is used for CDN (Content Delivery Network) to enhance website 
 * Go to `Permissions`->`Bucket policy` and edit the bucket policy for the public internet to access the S3 bucket. ARN to be mentioned in the bucket policy will be the ARN of the S3 bucket. The sample of bucket policy is as follows:
 ```JSON
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "PublicReadGetObject",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::pranavswaroop.click/*"
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "cloudfront.amazonaws.com"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::your-bucket-name/*",
+      "Condition": {
+        "StringEquals": {
+          "AWS:SourceArn": "arn:aws:cloudfront::account-id:distribution/distribution-id"
         }
-    ]
+      }
+    }
+  ]
 }
 ```
 ## Stage 3 - Create a SSL cerificate for HTTPS access
