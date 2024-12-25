@@ -70,7 +70,7 @@ dynamically obtain apply the desired configuration, enabling seamless updates an
     conditions`->Set the 'statistic' as `average` and 'Period' as `5 minutes`.
     Set the 'Threshold type' as `Static`, define the desired 'alarm condition'(ex; Greater/equal>= threshold)
 * Then define the `threshold value` in %. If the memory utilization is exceeding the `threshold value` you can configure
-    actions to send notifications to specified userd when the alarm triggers.
+    actions to send notifications to specified users or services when the alarm triggers.
     
 ## Conclusion
   Monitoring memory utilization using the CloudWatch agent helps you capture vital performance data not available by
